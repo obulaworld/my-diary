@@ -1,0 +1,58 @@
+body{  font: 15px/1.5 Arial, Helvetica, sans-serif;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: cursive;  }
+/* Header **/
+header{  background: #6c2726;  color: #ffffff;  padding-top: 30px;  min-height: auto;  height: 25px;  border-bottom: #e8491d 3px solid;  }
+
+.inner{  padding: 12px 20px;  max-width: 1200px;  margin: 0 auto;  margin-top: -30px;  }
+
+#links{  float: right;  font-size:13pt;  margin-top: 5px;  }
+header a{  color: #ffffff;  text-decoration: none;  text-transform: uppercase;  font-size: 13px;  }
+
+header li{  float:left;  display: inline;  padding: 0 20px 0 20px;  }
+
+header #branding{  float: left;  font-family: Courier !important;  margin-top: -20px;  }
+
+header #branding h1{  margin: 0;  }
+
+h3 {  margin-top: 5% !important;  }
+
+header nav{  float: right;  margin-top: 10px;  }
+
+header .highlight, header .current a{  color: #e8491d;  font-weight: bold;  text-transform: uppercase;  }
+
+header a:hover{  color: #e8491d;  font-weight: bold;  }
+
+.box2 h4{  text-decoration: underline;  margin-bottom: 0;  margin-top: 0;  color: black;  }
+
+.box2 p{  margin-top: 0;  font-style: italic;  font-size: 13pt;  color: black;  }
+
+.box h6{  margin-top: 30px;  text-decoration: underline;  margin-bottom: 0; /* margin-top: 0px; */  margin-right: 20px;  color: black;  }
+
+ul{  margin: 0;  padding: 0;  }
+
+button{  border: none;  background: #6c2726;  color: white;  border-bottom: solid 4px #222;  font-size: 18px;  padding: 20px 30px;  cursor: pointer;  }
+.box2 h5 {  margin-bottom: 10px;  text-decoration: underline;  margin-top: 0;  color: black;  display: inline-block;  }
+
+#boxes{  margin-top: 20px;  }
+
+button:hover {  background: #fff;  color: black;  border-left-color: #6c2726;  border-bottom-color: #111;  }
+
+button:active {  position: relative;  top: 2px;  }
+
+footer {  padding: 20px;  margin-top: 600px;  height: 100px;  color: #ffffff;  text-align: center;  background-color: black;  }
+
+.middle-h{  color: black;  }
+
+.container{  width: 100%;  margin: auto;  margin-left: 10px;  text-align: center;  color: #ffffff;  font-size: 25px;  margin-top: 2;  }
+
+.container h1{  margin-top: 200px;  }
+
+.container-sign{  background: #2e9adf;  color: white;  padding: 0 15px 15px;  position: relative;  width: 100%;  height: 50%;  }
+
+.button_1{ height: 100%; background: #e8491d; border: 0; padding-left: 20px; padding-right: 20px;  color: #ffffff; }
+
+label{  color: black;  font-size: 13pt;  }
+
+@media (max-width : 480px ) {
+   #branding{ float: inherit !important; font-family: Courier !important;  margin-top: -20px;  }
+    header{height: 150px !important;}
+}
