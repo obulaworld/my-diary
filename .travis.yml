@@ -1,3 +1,9 @@
 language: node_js
 node_js:
   - " stable"
+script: make test
+branches:
+  only:
+  - master
+  - staging
+  - backend
