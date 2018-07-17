@@ -1,8 +1,0 @@
-language: node_js
-sudo: enabled
-after_success: coveralls
-
-deploy:
-  provider: heroku
-  api_key:
-    secure: "74df4acd-4c2a-4084-afc4-3c7e2ae88b6a"
