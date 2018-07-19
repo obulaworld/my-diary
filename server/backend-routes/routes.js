@@ -55,7 +55,7 @@ router.post('/api/v1/entries', (req, res) => {
   const { error } = validateEntry(req.body);
 
   if (error) {
-    res.status(400).json({ error: error.details[0].message });
+    res.status(403).json({ error: error.details[0].message });
     return;
   }
   const id = allEntries.length + 1;
