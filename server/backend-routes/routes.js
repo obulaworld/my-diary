@@ -36,4 +36,12 @@ router.get('/api/v1/entries/:id', (req, res) => {
   res.status(200).json({ success: 'success', entry: entryToModify });
 });
 
+router.delete('/api/v1/entries/:id', (req, res) => {
+  const entryToModify = allEntries.find(e => e.id === parseInt(req.params.id, 10));
+  if (!entryToModify || entryToModify === undefined)res.status(404).json({ error: 'The entry you wish to delete must have been removed or have not been created' });
+  const index = allEntries.indexOf(entryToModify);
+  delete allEntries[index];
+  res.status(200).json({ success: 'Entry has been successfully deleted' });
+});
+
 export default router;
