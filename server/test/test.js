@@ -48,3 +48,16 @@ describe('/GET /api/v1/entries/:id', () => {
       });
   });
 });
+describe('/DELETE /api/v1/entries/:id', () => {
+  it('it should DELETE one diary entries with known id', (done) => {
+    const id1 = 2;
+    chai.request(server)
+      .delete(`/api/v1/entries/${id1}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('success');
+        res.body.should.not.have.property('error');
+        done();
+      });
+  });
+});
