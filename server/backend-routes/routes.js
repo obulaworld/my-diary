@@ -53,11 +53,7 @@ router.put('/api/v1/entries/:id', (req, res) => {
 
 router.post('/api/v1/entries', (req, res) => {
   const { error } = validateEntry(req.body);
-
-  if (error) {
-    res.status(403).json({ error: error.details[0].message });
-    return;
-  }
+  if (error) res.status(400).json({ error: error.details[0].message });
   const id = allEntries.length + 1;
   const entryAdded = new CreateEntry(id, req.body.title, req.body.category, req.body.sub_category,
     req.body.content);
