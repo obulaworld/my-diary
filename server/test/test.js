@@ -37,17 +37,6 @@ describe('/GET /api/v1/entries/:id', () => {
         done();
       });
   });
-  it('it should not GET one diary entries with unknown id', (done) => {
-    const id2 = 10;
-    chai.request(server)
-      .get(`/api/v1/entries/${id2}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        done();
-      });
-  });
 });
 describe('/DELETE /api/v1/entries/:id', () => {
   it('it should DELETE one diary entries with known id', (done) => {
