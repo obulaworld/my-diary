@@ -15,7 +15,8 @@
     "express": "^4.16.3",
     "jasmine-es6": "^0.4.3",
     "joi": "^13.4.0",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "mocha": "^5.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -25,7 +26,7 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "jasmine": "^3.1.0",
-    "mocha": "^5.2.0"
+    "jasmine": "^3.1.0"
+
   }
 }
