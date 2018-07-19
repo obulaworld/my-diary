@@ -7,6 +7,4 @@ export default class CreateEntry {
     this.content = content;
     this.date = new Date();
   }
-
-
 }
