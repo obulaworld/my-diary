@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
+import CreateEntry from '../backend-model/diary_entry_model';
 
 const should = chai.should();
 
@@ -36,7 +37,7 @@ describe('/GET /api/v1/entries/:id', () => {
         done();
       });
   });
-  it('it should GET one diary entries with unknown id', (done) => {
+  it('it should not GET one diary entries with unknown id', (done) => {
     const id2 = 10;
     chai.request(server)
       .get(`/api/v1/entries/${id2}`)
@@ -50,12 +51,33 @@ describe('/GET /api/v1/entries/:id', () => {
 });
 describe('/DELETE /api/v1/entries/:id', () => {
   it('it should DELETE one diary entries with known id', (done) => {
-    const id1 = 2;
+    const id = 2;
     chai.request(server)
-      .delete(`/api/v1/entries/${id1}`)
+      .delete(`/api/v1/entries/${id}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('success');
+        res.body.should.not.have.property('error');
+        done();
+      });
+  });
+});
+describe('/PUT /api/v1/entries/:id', () => {
+  it('it should Modify one diary entries with known id', (done) => {
+    const entryAdded = new CreateEntry(1, 'One Beautiful Morning', 'Transportation', 'Brt', 'Someone paid my t-fare to work');
+    chai.request(server)
+      .put(`/api/v1/entries/${entryAdded.id}`)
+      .send({ title: 'My worst day', category: 'Transportation', sub_category: 'Yello Bus',content: 'Lagos conductors can be rude..' })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
+        res.body.entry.should.have.property('id').eql(entryAdded.id);
+        res.body.entry.should.have.property('title');
+        res.body.entry.should.have.property('category');
+        res.body.entry.should.have.property('sub_category');
+        res.body.entry.should.have.property('content');
         res.body.should.not.have.property('error');
         done();
       });

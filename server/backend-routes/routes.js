@@ -44,4 +44,19 @@ router.delete('/api/v1/entries/:id', (req, res) => {
   res.status(200).json({ success: 'Entry has been successfully deleted' });
 });
 
+router.put('/api/v1/entries/:id', (req, res) => {
+  const entryToModify = allEntries.find(e => e.id === parseInt(req.params.id, 10));
+  if (!entryToModify || entryToModify === undefined)res.status(404).json({ error: 'The entry you wish to modify must have been removed or have not been created' });
+  const { error } = validateEntry(req.body);
+  if (error) {
+    res.status(400).json({ error: error.details[0].message });
+    return;
+  }
+  entryToModify.title = req.body.title;
+  entryToModify.category = req.body.category;
+  entryToModify.sub_category = req.body.sub_category;
+  entryToModify.content = req.body.content;
+  res.status(200).json({ success: 'success', entry: entryToModify });
+});
+
 export default router;
