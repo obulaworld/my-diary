@@ -30,4 +30,10 @@ router.get('/api/v1/entries', (req, res) => {
   res.status(200).json({ success: 'successful', entries: allEntries });
 });
 
+router.get('/api/v1/entries/:id', (req, res) => {
+  const entryToModify = allEntries.find(e => e.id === parseInt(req.params.id, 10));
+  if (!entryToModify || entryToModify === undefined)res.status(404).json({ error: 'The entry you requested for must have been removed or have not been created' });
+  res.status(200).json({ success: 'success', entry: entryToModify });
+});
+
 export default router;
