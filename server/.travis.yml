@@ -1,9 +1,9 @@
 language: node_js
-script: cd server && npm test
-branches:
-  only:
-  - master
-  - staging
-  - backend
-  
+sudo: false
+node_js:
+  - "stable"
+install:
+  - npm install
+script:
+  - npm test
 after_success: coveralls
