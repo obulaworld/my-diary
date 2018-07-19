@@ -4,7 +4,7 @@
   "description": "allows user to create, view and modify diary entries",
   "main": "server.js",
   "scripts": {
-    "test": "./node_modules/jasmine-es6/bin/jasmine.js",
+    "test": " mocha --require babel-core/register ./test/test",
     "start": "nodemon server.js --exec babel-node --presets es2015,stage-2"
   },
   "author": "Obuladike Chisom",
