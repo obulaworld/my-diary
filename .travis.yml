@@ -6,4 +6,5 @@ install:
   - cd server && npm install
 script:
   - npm test
-after_success: coveralls
+after_script:
+  - npm run coveralls

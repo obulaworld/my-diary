@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --require babel-core/register ./test --recursive --exit",
-    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2",
+    "coveralls": "jscoverage lib && QUICKSORT_COV=1 nodeunit --reporter=lcov test | coveralls"
   },
   "author": "Obuladike Chisom",
   "license": "ISC",
@@ -27,14 +28,16 @@
     "babel-register": "^6.26.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "coveralls": "^3.0.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
     "jasmine": "^3.1.0",
     "jasmine-core": "^3.1.0",
+    "jscoverage": "^0.6.0",
     "mocha": "^2.5.3",
-    "should": "^13.2.1",
-    "istanbul": "~0.2.4",
-    "coveralls": "~2.7.1"
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodeunit": "^0.11.3",
+    "should": "^13.2.1"
   }
 }
