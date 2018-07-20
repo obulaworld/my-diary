@@ -4,7 +4,7 @@
   "description": "allows user to create, view and modify diary entries",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --require babel-core/register ./test --recursive --exit",
+    "test": "nyc --reporter=text --reporter=lcov mocha --require babel-core/register ./test --recursive --exit",
     "start": "babel-node server.js --exec babel-node --presets es2015,stage-2",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
