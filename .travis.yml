@@ -1,5 +1,5 @@
 language: node_js
-script: cd server && npm test
+script: npm test
 branches:
   only:
   - master
