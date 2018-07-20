@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'UI')));
 
 app.use('/', router);
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   console.log('Success!! app listening on port 3000!');
 });
 
