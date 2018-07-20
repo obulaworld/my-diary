@@ -1,9 +1,10 @@
 language: node_js
-script: cd server && npm test
-branches:
-  only:
-  - master
-  - staging
-  - backend
-  
+sudo: false
+node_js:
+  - "4.1"
+  - "4.0"
+install:
+  - npm install
+script:
+  - npm test
 after_success: coveralls
