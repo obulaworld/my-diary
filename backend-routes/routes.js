@@ -3,6 +3,7 @@
  */
 import express from 'express';
 import Joi from 'joi';
+import path from 'path';
 import allEntries from '../backend-all-entries/all-entries';
 import CreateEntry from '../backend-model/diary_entry_model';
 
@@ -17,6 +18,10 @@ const validateEntry = (entry) => {
   });
   return Joi.validate(entry, schema);
 };
+
+router.get('/', (req, res) => {
+  res.render('index');
+});
 
 router.get('/api/v1/entries', (req, res) => {
   res.status(200).json({ success: 'successful', entries: allEntries });
