@@ -20,7 +20,7 @@ const validateEntry = (entry) => {
 };
 
 router.get('/', (req, res) => {
-  res.render('index');
+  res.send('Andela BootCamp Challenge 2.....Welcome to My Diary Api Endpoints Written by Obuladike Chisom.....');
 });
 
 router.get('/api/v1/entries', (req, res) => {
