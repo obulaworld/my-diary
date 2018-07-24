@@ -1,39 +1,140 @@
 
-.container .card  .left-card {  left: 0;  z-index: 1000;  height: 500px;  float: left;  width: 398px;  border-top-left-radius: 6px;  border-bottom-left-radius: 6px;  background-color: #6c2726;  text-align: center;  padding: 40px 30px;  color: white;  }
+.container .card  .left-card {
+    left: 0;
+    z-index: 1000;
+    height: 500px;
+    float: left;
+    width: 398px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: #6c2726;
+    text-align: center;
+    padding: 40px 30px;
+    color: white;
+}
 
-.container .card  .right-card {  width: 452px;  border-top-right-radius: 6px;  float: right;  border-bottom-right-radius: 6px;  min-height: 500px;  background-color: white;  padding: 40px 45px;  }
+.container .card  .right-card {
+    width: 452px;
+    border-top-right-radius: 6px;
+    float: right;
+    border-bottom-right-radius: 6px;
+    min-height: 500px;
+    background-color: white;
+    padding: 40px 45px;
+}
 
 @media (max-width : 480px) {
 
-	.container .card .inner-card {  box-shadow:inherit !important;  }
-	#diary-image2{  display: block;  }
-	.container .card .right-card {  border:1px solid #6c2726; width: 452px;  border-top-right-radius: 6px;  float: right;  margin-right: 300px;  border-bottom-right-radius: 6px;  min-height: 500px;  background-color: white;  padding: 40px 45px;  }
+	.container .card .inner-card {
+        box-shadow:inherit !important;
+    }
+	#diary-image2{
+        display: block;
+    }
+	.container .card .right-card {
+        border:1px solid #6c2726;
+        width: 452px;
+        border-top-right-radius: 6px;
+        float: right;
+        margin-right: 300px;
+        border-bottom-right-radius: 6px;
+        min-height: 500px;
+        background-color: white;
+        padding: 40px 45px;
+    }
 
-	.container .card .left-card { display: none;  left: 0px;  z-index: 1000;  height: 500px; /* float: left; */  margin-left: 200px;  width: 398px;  border-top-left-radius: 6px;  border-bottom-left-radius: 6px;  background-color: #6c2726;  text-align: center;  padding: 40px 30px;  color: white;  }
+	.container .card .left-card {
+        display: none;
+        left: 0px;
+        z-index: 1000;
+        height: 500px; /* float: left; */
+        margin-left: 200px;
+        width: 398px;
+        border-top-left-radius: 6px;
+        border-bottom-left-radius: 6px;
+        background-color: #6c2726;
+        text-align: center;
+        padding: 40px 30px;
+        color: white;
+    }
 }
-	.container h1 {	margin-top: 0 !important;}
+	.container h1 {
+        margin-top: 0 !important;
+    }
 
-	.container {  min-height: 100%;  font-size: 13px;  }
+    .register-button{
+        margin-top: 1%;
+    }
 
- 	.card{  padding-top: 60px;  padding-bottom: 60px;  margin-left: 170px;  }
+	.container {
+        font-size: 13px;
+        width: inherit !important;
+        height: inherit !important;
+    }
 
-	.container .card .inner-card{  width: 1000px;  height: 580px;  box-shadow: 0 8px 20px #e3e7ea;  }
+ 	.card{
+        padding-top: 40px;
+        padding-bottom: 0px;
+        margin-left: 170px;
+    }
 
-	.container .card .inner-card .top-text{  padding-left: 383px;  width: 930px;  box-shadow: 0 8px 20px #e3e7ea;  }
+	.container .card .inner-card{
+        width: 1000px;
+        height: 580px;
+        box-shadow: 0 8px 20px #e3e7ea;
+    }
 
-	.container .card  .left-card h1 {  font-size: 20px;  letter-spacing: 1px;  color: #ffffff;  line-height: 29px;  margin-bottom: 5px;  }
+	.container .card .inner-card .top-text{
+        padding-left: 383px;
+        width: 930px;
+        box-shadow: 0 8px 20px #e3e7ea;
+    }
 
-    input{  background-color: #f4f9fb;  border: 0;  box-shadow: 0px 1px 1px 0px #E6E9EC;  color: #555;  margin-bottom: 20px;  height: 40px;  padding: 5px 10px;  }
+	.container .card  .left-card h1 {
+        font-size: 20px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        line-height: 29px;
+        margin-bottom: 5px;
+    }
 
-	.turn{  margin-top: 50%;  color: #6c2726;  text-decoration: none;  }
+    input{
+        background-color: #f4f9fb;
+        border: 0;
+        box-shadow: 0px 1px 1px 0px #E6E9EC;
+        color: #555;
+        margin-bottom: 20px;
+        height: 40px;
+        padding: 5px 10px;
+        width: 80%;
+    }
 
-	hr{  margin-top: 100px;  }
+	.turn{
+        margin-top: 50%;
+        color: #6c2726;
+        text-decoration: none;
+    }
+    label{
+        float: left;
+        margin-left: 8%;
+    }
 
-	h3 {  margin-top: 5% !important; color:#6c2726  }
+	hr{
+        margin-top: 50px;
+    }
 
-	#diary-image{  margin-top: 160px;  }
+	h3 {
+        margin-top: 5% !important;
+        color:#6c2726
+    }
 
-	#image-dairy{  width: 80%;  }
+	#diary-image{
+        margin-top: 160px;
+    }
+
+	#image-dairy{
+        width: 80%;
+    }
 
 @media (min-width : 992px) {
 
