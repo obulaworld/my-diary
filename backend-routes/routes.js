@@ -63,7 +63,7 @@ router.post('/api/v1/entries', (req, res) => {
   const entryAdded = new CreateEntry(id, req.body.title, req.body.category, req.body.sub_category,
     req.body.content);
   allEntries.push(entryAdded);
-  res.status(200).json({ success: 'success', entry: entryAdded });
+  res.status(201).json({ success: 'success', entry: entryAdded });
 });
 
 
