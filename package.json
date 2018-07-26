@@ -20,6 +20,7 @@
     "express": "^4.16.3",
     "jasmine-es6": "^0.4.3",
     "joi": "^13.4.0",
+    "jsonwebtoken": "^8.3.0",
     "mocha": "^5.2.0",
     "pg": "^7.4.3",
     "request": "^2.87.0"
