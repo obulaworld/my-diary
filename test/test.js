@@ -136,3 +136,38 @@ describe('Entry Route Controller', () => {
       });
   });
 });
+
+describe('User Route Controller', () => {
+  it('should Create New User', (done) => {
+    const values = {
+      register_email: 'me2@gmail.com',
+      register_password: 'password',
+      register_full_name: 'mr john doe',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('user');
+        res.body.should.have.property('token');
+        done();
+      });
+  });
+  it('should Return 400 for incomplete user info', (done) => {
+    const values = {
+      register_email: 'mi@gmail.com',
+      register_password: '',
+      register_full_name: 'mr john doe',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+});
