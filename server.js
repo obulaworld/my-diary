@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use('/api/v1', router);
 router(app);
 
-const server = app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Success!! app listening on port 3000!');
 });
 
-module.exports = server;
+// module.exports = server;
