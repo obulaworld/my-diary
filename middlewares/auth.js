@@ -13,6 +13,30 @@ const auth = {
       expiresIn: '48h',
     });
   },
+
+  verifyToken(token) {
+    let decoded = {};
+    try {
+      decoded.payload = jwt.verify(token, process.env.SECRET);
+    } catch (error) {
+      decoded = {
+        error: error.message,
+      };
+    }
+    return decoded;
+  },
+
+  verifyUserToken(req) {
+    const token = req.headers['x-access-token'];
+    if (!token) {
+      return 401;
+    }
+    const decoded = auth.verifyToken(token);
+    if (decoded.error) {
+      return 500;
+    }
+    return decoded.payload;
+  },
 };
 
 export default auth;

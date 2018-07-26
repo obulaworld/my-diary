@@ -19,6 +19,6 @@ const entryParams = {
   updated_at: 'Timestamp',
 }
 
-query(db,userParams, () => {
-  query(db, entryParams);
+query(db, 'users', userParams, () => {
+  query(db, 'entries', entryParams);
 });

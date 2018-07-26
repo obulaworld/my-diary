@@ -4,6 +4,8 @@
 import allEntries from '../backend-all-entries/all-entries';
 import CreateEntry from '../backend-model/diary_entry_model';
 import validateEntry from '../backend-validation/validation';
+import auth from '../middlewares/auth';
+import db from '../db';
 
 class DiaryController {
   static home(req, res) {
@@ -49,8 +51,35 @@ class DiaryController {
     res.status(200).json({ success: 'success', entry: entryToModify });
   }
 
-  static getAllEntries(req, res) {
-    res.status(200).json({ success: 'successful', entries: allEntries });
+  static getAllEntries(req, res,next) {
+    const check = auth.verifyUserToken(req);
+    if (check === 401) {
+      res.status(401).json({ error: 'No token provided.' });
+    } else if (check === 500) {
+      res.status(500).json({ error: 'Failed to authenticate token.' });
+    } else {
+      const query = {
+        text: 'Select * from users where id = $1 LIMIT 1',
+        values: [check.id],
+      };
+      db.query(query, (error, response) => {
+        if (error) return next(error);
+        if (response.rows.length > 0) {
+          const query2 = {
+            text: 'Select * from entries where user_id = $1',
+            values: [
+              check.id,
+            ],
+          };
+          db.query(query2, (error2, res2) => {
+            if (error2) return next(error2);
+            res.status(200).json({ success: 'Success', entries: res2.rows });
+          });
+        } else {
+          res.status(404).json({ error: 'User not found' });
+        }
+      });
+    }
   }
 
   static deleteEntry(req, res) {
