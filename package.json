@@ -4,8 +4,9 @@
   "description": "allows user to create, view and modify diary entries",
   "main": "server.js",
   "scripts": {
-    "test": "set NODE_ENV=test && nyc --reporter=html --reporter=text mocha --require babel-core/register ./test --recursive --exit",
-    "start": "babel-node server.js --exec babel-node --presets es2015,stage-2",
+    "test": "npm run migrate && set NODE_ENV=test && nyc --reporter=html --reporter=text mocha --require babel-core/register ./test --recursive --exit",
+    "start": "npm run migrate && babel-node server.js --exec babel-node --presets es2015,stage-2",
+    "migrate": "node -r babel-register -r ./node_modules/dotenv/config models",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Obuladike Chisom",
@@ -15,11 +16,13 @@
     "babel-core": "^6.26.3",
     "babel-preset-es2015": "^6.24.1",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jasmine-es6": "^0.4.3",
     "joi": "^13.4.0",
-    "request": "^2.87.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "pg": "^7.4.3",
+    "request": "^2.87.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
