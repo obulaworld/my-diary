@@ -30,33 +30,33 @@ describe('Entry Route Controller', () => {
   //       done();
   //     });
   // });
-  it('should GET one diary entries with known id', (done) => {
-    const id1 = 2;
-    chai.request(server)
-      .get(`/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('success');
-        res.body.should.have.property('entry');
-        res.body.entry.should.have.property('id').eql(id1);
-        res.body.should.not.have.property('error');
-        done();
-      });
-});
-  it('should FAIL in getting one diary entry with unknown id', (done) => {
-    const id1 = 10;
-    chai.request(server)
-      .get(`/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entry');
-        res.body.should.not.have.property('id');
-        done();
-      });
-});
+//   it('should GET one diary entries with known id', (done) => {
+//     const id1 = 2;
+//     chai.request(server)
+//       .get(`/entries/${id1}`)
+//       .end((err, res) => {
+//         res.should.have.status(200);
+//         res.body.should.be.a('object');
+//         res.body.should.have.property('success');
+//         res.body.should.have.property('entry');
+//         res.body.entry.should.have.property('id').eql(id1);
+//         res.body.should.not.have.property('error');
+//         done();
+//       });
+// });
+//   it('should FAIL in getting one diary entry with unknown id', (done) => {
+//     const id1 = 10;
+//     chai.request(server)
+//       .get(`/entries/${id1}`)
+//       .end((err, res) => {
+//         res.should.have.status(404);
+//         res.body.should.be.a('object');
+//         res.body.should.have.property('error');
+//         res.body.should.not.have.property('entry');
+//         res.body.should.not.have.property('id');
+//         done();
+//       });
+// });
   it('should FAIL in modifying one diary entry with unknown id', (done) => {
     const id1 = 10;
     chai.request(server)
@@ -70,30 +70,30 @@ describe('Entry Route Controller', () => {
         done();
       });
 });
-  it('should  FAIL in deleting one diary entry with unknown id', (done) => {
-    const id1 = 10;
-    chai.request(server)
-      .delete(`/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entry');
-        res.body.should.not.have.property('id');
-        done();
-      });
-});
-  it('should DELETE one diary entries with known id', (done) => {
-    const id = 2;
-    chai.request(server)
-      .delete(`/entries/${id}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('success');
-        res.body.should.not.have.property('error');
-        done();
-      });
-  });
+//   it('should  FAIL in deleting one diary entry with unknown id', (done) => {
+//     const id1 = 10;
+//     chai.request(server)
+//       .delete(`/entries/${id1}`)
+//       .end((err, res) => {
+//         res.should.have.status(404);
+//         res.body.should.be.a('object');
+//         res.body.should.have.property('error');
+//         res.body.should.not.have.property('entry');
+//         res.body.should.not.have.property('id');
+//         done();
+//       });
+// });
+//   // it('should DELETE one diary entries with known id', (done) => {
+//   //   const id = 2;
+//   //   chai.request(server)
+//   //     .delete(`/entries/${id}`)
+//   //     .end((err, res) => {
+//   //       res.should.have.status(200);
+//   //       res.body.should.have.property('success');
+//   //       res.body.should.not.have.property('error');
+//   //       done();
+//   //     });
+//   // });
   it('should Modify one diary entry with known id', (done) => {
     const entryAdded = new CreateEntry(1, 'One Beautiful Morning', 'Transportation', 'Brt', 'Someone paid my t-fare to work');
     const EntryToModify = {
