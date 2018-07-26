@@ -8,23 +8,32 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Entry Route Controller', () => {
-  it('should GET all diary entries', (done) => {
-    chai.request(server)
-      .get('/api/v1/entries')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('success');
-        res.body.should.have.property('entries');
-        res.body.should.not.have.property('error');
-        res.body.entries.should.be.a('array');
-        done();
-      });
-  });
+  // it('should return 401 without a token', (done) => {
+  //   chai.request(server)
+  //     .get('/entries')
+  //     .end((err, res) => {
+  //       res.should.have.status(401);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('error');
+  //       res.body.should.not.have.property('entries');
+  //       done();
+  //     });
+  // });
+  // it('should return 500 for invalid token', (done) => {
+  //   chai.request(server)
+  //     .get('/entries')
+  //     .end((err, res) => {
+  //       res.should.have.status(500);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('error');
+  //       res.body.should.not.have.property('entries');
+  //       done();
+  //     });
+  // });
   it('should GET one diary entries with known id', (done) => {
     const id1 = 2;
     chai.request(server)
-      .get(`/api/v1/entries/${id1}`)
+      .get(`/entries/${id1}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
@@ -38,7 +47,7 @@ describe('Entry Route Controller', () => {
   it('should FAIL in getting one diary entry with unknown id', (done) => {
     const id1 = 10;
     chai.request(server)
-      .get(`/api/v1/entries/${id1}`)
+      .get(`/entries/${id1}`)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -51,7 +60,7 @@ describe('Entry Route Controller', () => {
   it('should FAIL in modifying one diary entry with unknown id', (done) => {
     const id1 = 10;
     chai.request(server)
-      .put(`/api/v1/entries/${id1}`)
+      .put(`/entries/${id1}`)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -64,7 +73,7 @@ describe('Entry Route Controller', () => {
   it('should  FAIL in deleting one diary entry with unknown id', (done) => {
     const id1 = 10;
     chai.request(server)
-      .delete(`/api/v1/entries/${id1}`)
+      .delete(`/entries/${id1}`)
       .end((err, res) => {
         res.should.have.status(404);
         res.body.should.be.a('object');
@@ -77,7 +86,7 @@ describe('Entry Route Controller', () => {
   it('should DELETE one diary entries with known id', (done) => {
     const id = 2;
     chai.request(server)
-      .delete(`/api/v1/entries/${id}`)
+      .delete(`/entries/${id}`)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.have.property('success');
@@ -94,7 +103,7 @@ describe('Entry Route Controller', () => {
       content: 'Lagos conductors can be rude..',
     };
     chai.request(server)
-      .put(`/api/v1/entries/${entryAdded.id}`)
+      .put(`/entries/${entryAdded.id}`)
       .send(EntryToModify)
       .end((err, res) => {
         res.should.have.status(200);
@@ -118,7 +127,7 @@ describe('Entry Route Controller', () => {
       content: 'I ate a lot of afang soup to my taste. It was fun..',
     };
     chai.request(server)
-      .post('/api/v1/entries')
+      .post('/entries')
       .send(values)
       .end((err, res) => {
         res.should.have.status(201);
