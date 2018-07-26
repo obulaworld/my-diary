@@ -8,6 +8,7 @@ const EntryRoute = (app) => {
   app.get('/', DiaryController.home);
   app.get('/api/v1/entries/:id', DiaryController.getEntryById);
   app.post('/api/v1/auth/signup', UserController.createUser);
+  app.post('/api/v1/auth/login', UserController.loginUser);
   app.get('/api/v1/entries', DiaryController.getAllEntries);
   app.post('/api/v1/entries', DiaryController.createEntry);
   app.put('/api/v1/entries/:id', DiaryController.editEntry);
