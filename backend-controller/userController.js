@@ -3,6 +3,7 @@
  */
 import bcrypt from 'bcrypt';
 import validateUser from '../backend-validation/user_validation';
+import validateUser2 from '../backend-validation/login_validation';
 import auth from '../middlewares/auth';
 import db from '../db';
 
@@ -47,6 +48,42 @@ class UserController {
           });
         });
       });
+    });
+  }
+
+  static loginUser(req, res, next) {
+    const values = {
+      email: req.body.login_email,
+      password: req.body.login_password,
+    };
+    const { error } = validateUser2(values);
+    if (error) res.status(400).json({ error: error.details[0].message });
+    const query = {
+      text: 'select id, name, password, is_notifiable from users where email = $1 LIMIT 1',
+      values: [
+        req.body.login_email,
+      ],
+    };
+    db.query(query, (error1, response) => {
+      if (error1) return next(error1);
+      const user = response.rows[0];
+      if (!response.rows.length) {
+        return res.status(401).send({
+          error: 'Sorry, Invalid E-mail',
+        });
+      }
+      const check = bcrypt.compareSync(req.body.login_password, user.password);
+      if (check) {
+        const token = auth.authenticate(user);
+        delete user.password;
+        return res.status(200).send({
+          user, token,
+        });
+      } else {
+        return res.status(401).send({
+          error: 'Invalid Password',
+        });
+      }
     });
   }
 }
