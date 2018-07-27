@@ -41,14 +41,35 @@ class DiaryController {
     res.status(200).json({ success: 'success', entry: entryToModify });
   }
 
-  static getEntryById(req, res) {
-    const entryToModify = allEntries.find(e => e.id === parseInt(req.params.id, 10));
-    if (!entryToModify || entryToModify === undefined) {
-      res.status(404).json({
-        error: 'The entry you requested for must have been removed or have not been created',
+  static getEntryById(req, res,next) {
+    const check = auth.verifyUserToken(req);
+    if (check === 401) {
+      res.status(401).json({ error: 'No token provided.' });
+    } else if (check === 500) {
+      res.status(500).json({ error: 'Failed to authenticate token.' });
+    } else {
+      const query = {
+        text: 'Select * from users where id = $1 LIMIT 1',
+        values: [check.id],
+      };
+      db.query(query, (error, response) => {
+        if (error) return next(error);
+        if (response.rows.length > 0) {
+          const query2 = {
+            text: 'Select * from entries where id = $1 LIMIT 1',
+            values: [
+              req.params.id,
+            ],
+          };
+          db.query(query2, (error2, res2) => {
+            if (error2) return next(error2);
+            res.status(200).json({ success: 'Success', entry: res2.rows });
+          });
+        } else {
+          res.status(404).json({ error: 'User not found' });
+        }
       });
     }
-    res.status(200).json({ success: 'success', entry: entryToModify });
   }
 
   static getAllEntries(req, res,next) {
