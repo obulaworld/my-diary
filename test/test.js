@@ -9,7 +9,7 @@ describe('User Route Controller', () => {
     const values = {
       email: 'me2@gmail.com',
       password: 'password',
-     name: 'mr john doe',
+      name: 'mr john doe',
     };
     chai.request(server)
       .post('/auth/signup')

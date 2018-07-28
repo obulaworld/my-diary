@@ -1,4 +1,4 @@
-body{  font: 15px/1.5 Arial, Helvetica, sans-serif;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: cursive;  }
+body{  font: 15px/1.5 Arial;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: cursive;  }
 /* Header **/
 header{  background: #6c2726;  color: #ffffff;  padding-top: 30px;  min-height: auto;  height: 25px;  border-bottom: #e8491d 3px solid;  }
 
