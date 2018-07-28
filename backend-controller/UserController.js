@@ -20,14 +20,8 @@ class UserController {
                        res.status(409).json({ error: `Email ${req.body.email} already exists` });
                   } else {
                       const hash = bcrypt.hashSync(req.body.password, 10);
-                      const query = {
-                          text: `insert into users (
-            name, email, password
-          ) values ($1, $2, $3)returning id, name, email`,
-                          values: [
-                              req.body.name, req.body.email,
-                              hash,
-                          ],
+                      const query = { text: `insert into users ( name, email, password ) values ($1, $2, $3)returning id, name, email`,
+                          values: [ req.body.name, req.body.email, hash,],
                       };
                       return client.query(query, (error3, res3) => {
                           if (error3) {
@@ -52,9 +46,7 @@ class UserController {
   static loginUser(req, res) {
     const query = {
       text: 'select id, name, password, is_notifiable from users where email = $1 LIMIT 1',
-      values: [
-        req.body.email,
-      ],
+      values: [req.body.email ],
     };
     db.query(query, (error1, response) => {
       if (error1) {
@@ -62,21 +54,15 @@ class UserController {
       }else{
           const user = response.rows[0];
           if (!response.rows.length) {
-              return res.status(401).send({
-                  error: 'Sorry, Invalid E-mail',
-              });
+              return res.status(401).send({ error: 'Sorry, Invalid E-mail' });
           }else{
               const check = bcrypt.compareSync(req.body.password, user.password);
               if (check) {
                   const token = auth.authenticate(user);
                   delete user.password;
-                  return res.status(200).send({
-                      user, token,
-                  });
+                  return res.status(200).send({ user, token });
               } else {
-                  return res.status(401).send({
-                      error: 'Invalid Password',
-                  });
+                  return res.status(401).send({ error: 'Invalid Password' });
               }
           }
       }

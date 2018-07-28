@@ -3,7 +3,7 @@
  */
 import db from '../db';
 
-class DiaryController {
+class EntryController {
   static home(req, res) {
     res.send('Andela BootCamp Challenge 2.....Welcome to My Diary Api Endpoints Written by Obuladike Chisom.....');
   }
@@ -164,4 +164,4 @@ class DiaryController {
       });
   }
 }
-export default DiaryController;
+export default EntryController;
