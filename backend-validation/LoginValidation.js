@@ -8,10 +8,10 @@ export default (req, res, next) => {
     email: Joi.string().required(),
     password: Joi.string().required(),
   });
-    const { error } = Joi.validate(req.body, schema);
-    if (error) {
-         res.status(400).json({ error: error.details[0].message });
-    } else {
-        next();
-    }
+  const { error } = Joi.validate(req.body, schema);
+  if (error) {
+    res.status(400).json({ error: error.details[0].message });
+  } else {
+    next();
+  }
 };

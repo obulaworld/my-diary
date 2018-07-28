@@ -53,7 +53,7 @@ class UserController {
     const query = {
       text: 'select id, name, password, is_notifiable from users where email = $1 LIMIT 1',
       values: [
-        req.body.login_email,
+        req.body.email,
       ],
     };
     db.query(query, (error1, response) => {
@@ -66,7 +66,7 @@ class UserController {
                   error: 'Sorry, Invalid E-mail',
               });
           }else{
-              const check = bcrypt.compareSync(req.body.login_password, user.password);
+              const check = bcrypt.compareSync(req.body.password, user.password);
               if (check) {
                   const token = auth.authenticate(user);
                   delete user.password;
