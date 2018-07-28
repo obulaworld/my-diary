@@ -26,17 +26,18 @@ const auth = {
     return decoded;
   },
 
-  verifyUserToken(req) {
+  verifyUserToken(req, res, next) {
     const token = req.headers['x-access-token'];
     if (!token) {
-      return 401;
+      return res.status(401).json({ error: 'No token provided.' });
     }
     const decoded = auth.verifyToken(token);
 
     if (decoded.error) {
-      return 500;
+      return res.status(500).json({ error: 'Failed to authenticate token.' });
     }
-    return decoded.payload;
+    req.body.user = decoded.payload;
+    next();
   },
 };
 
