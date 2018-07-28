@@ -1,3 +1,4 @@
+// Reference => https://github.com/DinmaOtutu/RIDE-MY-WAY/
 import { Pool } from 'pg';
 
 import databaseConfig from './config';

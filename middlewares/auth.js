@@ -32,6 +32,7 @@ const auth = {
       return 401;
     }
     const decoded = auth.verifyToken(token);
+
     if (decoded.error) {
       return 500;
     }

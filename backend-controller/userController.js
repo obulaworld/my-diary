@@ -41,7 +41,7 @@ class UserController {
           if (error3) return done(next(error3));
           const createdUser = res3.rows[0];
           const userToken = auth.authenticate(createdUser);
-          return res.status(201).json({
+          return res.status(201).send({
             success: 'success',
             user: createdUser,
             token: userToken,
@@ -68,7 +68,7 @@ class UserController {
       if (error1) return next(error1);
       const user = response.rows[0];
       if (!response.rows.length) {
-        return res.status(401).json({
+        return res.status(401).send({
           error: 'Sorry, Invalid E-mail',
         });
       }
@@ -76,12 +76,12 @@ class UserController {
       if (check) {
         const token = auth.authenticate(user);
         delete user.password;
-        return res.status(200).json({
+        return res.status(200).send({
           user, token,
         });
       } else {
-        return res.status(401).json({
-          error: 'Invalid Password',
+        return res.status(401).send({
+                  error: 'Invalid Password',
         });
       }
     });
