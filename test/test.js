@@ -1,16 +1,15 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-import CreateEntry from '../backend-model/diary_entry_model';
 const should = chai.should();
 
 chai.use(chaiHttp);
 describe('User Route Controller', () => {
   it('should Create New User', (done) => {
     const values = {
-      register_email: 'me2@gmail.com',
-      register_password: 'password',
-      register_full_name: 'mr john doe',
+      email: 'me2@gmail.com',
+      password: 'password',
+     name: 'mr john doe',
     };
     chai.request(server)
       .post('/auth/signup')
@@ -26,9 +25,9 @@ describe('User Route Controller', () => {
   });
   it('should Return 400 for incomplete user info', (done) => {
     const values = {
-      register_email: 'mi@gmail.com',
-      register_password: '',
-      register_full_name: 'mr john doe',
+      email: 'mi@gmail.com',
+      password: '',
+      name: 'mr john doe',
     };
     chai.request(server)
       .post('/auth/signup')
@@ -40,8 +39,8 @@ describe('User Route Controller', () => {
   });
   it('Login an existing user', (done) => {
     const values = {
-      login_email: 'me2@gmail.com',
-      login_password: 'password',
+      email: 'me2@gmail.com',
+      password: 'password',
     };
     chai.request(server)
       .post('/auth/login')
@@ -54,8 +53,8 @@ describe('User Route Controller', () => {
   });
   it('Return 401 for invalid email during login', (done) => {
     const values = {
-      login_email: 'g@gmail.com',
-      login_password: 'password',
+      email: 'g@gmail.com',
+      password: 'password',
     };
     chai.request(server)
       .post('/auth/login')
@@ -70,8 +69,8 @@ describe('User Route Controller', () => {
   });
   it('Return 401 for invalid password', (done) => {
     const values = {
-      login_email: 'me@gmail.com',
-      login_password: 'hhhhhh',
+      email: 'me@gmail.com',
+      password: 'hhhhhh',
     };
     chai.request(server)
       .post('/auth/login')

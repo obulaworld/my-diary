@@ -3,11 +3,16 @@
  */
 import Joi from 'joi';
 
-export default (user) => {
+export default (req, res, next) => {
   const schema = Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().required(),
     password: Joi.string().required(),
   });
-  return Joi.validate(user, schema);
+  const { error } = Joi.validate(req.body, schema);
+  if (error) {
+    res.status(400).json({ error: error.details[0].message });
+  } else {
+    next();
+  }
 };

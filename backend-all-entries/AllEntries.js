@@ -1,7 +1,7 @@
 /**
  * Created by obulaworld on 7/19/18.
  */
-import CreateEntry from '../backend-model/diary_entry_model';
+import CreateEntry from '../backend-model/DiaryEntryModel';
 
 const allEntries = [
   new CreateEntry(1, 'My First Day at School', 'Education', 'Jss1 Class', 'It was interesting..'),
