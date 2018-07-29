@@ -230,30 +230,30 @@ describe('Entry Route Controller', () => {
         done();
       });
   });
-  it('should return 404 for DELETE /entries/:id with a valid token and unknown id', (done) => {
-    chai.request(server)
-      .delete('/entries/4')
-      .set('x-access-token', token)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('success');
-        done();
-      });
-  });
-  it('should return 200 for DELETE /entries/:id with a valid token and known id', (done) => {
-    chai.request(server)
-      .delete('/entries/1')
-      .set('x-access-token', token)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('success');
-        res.body.should.not.have.property('error');
-        done();
-      });
-  });
+  // it('should return 404 for DELETE /entries/:id with a valid token and unknown id', (done) => {
+  //   chai.request(server)
+  //     .delete('/entries/4')
+  //     .set('x-access-token', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(404);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('error');
+  //       res.body.should.not.have.property('success');
+  //       done();
+  //     });
+  // });
+  // it('should return 200 for DELETE /entries/:id with a valid token and known id', (done) => {
+  //   chai.request(server)
+  //     .delete('/entries/1')
+  //     .set('x-access-token', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(200);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('success');
+  //       res.body.should.not.have.property('error');
+  //       done();
+  //     });
+  // });
 });
 
 
