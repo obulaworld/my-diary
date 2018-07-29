@@ -122,9 +122,7 @@ class EntryController {
             if (response.rows.length > 0) {
                 const query2 = {
                     text: 'Select * from entries where user_id = $1',
-                    values: [
-                        req.body.user.id,
-                    ],
+                    values: [req.body.user.id,],
                 };
                 db.query(query2, (error2, res2) => {
                     if (error2) {
