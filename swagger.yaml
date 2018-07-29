@@ -4,7 +4,6 @@ info:
   description: "This is a diary application that allows users to create, modify and view their diary entries."
   version: "1.0.0"
   title: "MY DIARY"
-
   contact:
     email: "obulaworldofexcellence@gmail.com"
 host: "my-diary-challenge.herokuapp.com"
@@ -24,10 +23,10 @@ paths:
       responses:
         200:
           description: "Success"
-        404:
-          description: "Not Found"
+        401:
+          description: "No token provided"
         500:
-          description: "Server Error"
+          description: "Server Error or Invalid token"
   /entries/:entryId:
     get:
       tags:
@@ -41,15 +40,15 @@ paths:
         name: "entryId"
         description: "the required ID to be returned"
         required: true
-        schema:
-          $ref: ""
       responses:
         200:
           description: "Entry Details"
         404:
           description: "entry not found"
+        401:
+          description: "Token not provided"
         500:
-          description: "Server Error"
+          description: "Server Error or Invalid token"
   /entries:
     post:
       tags:
@@ -63,8 +62,10 @@ paths:
           description: "successfully created"
         400:
           description: "Incomplete values or bad request"
+        401:
+          description: "No token Provided"
         500:
-          description: "Server Error"
+          description: "Server Error or Invalid token"
   /entries:
      put:
        tags:
@@ -78,8 +79,10 @@ paths:
            description: "successful"
          400:
            description: "Incomplete values or bad request"
+         401:
+            description: "No token provided"
          500:
-           description: "Server Error"
+           description: "Server Error or Invalid token"
   /auth/signup:
     post:
       tags:
@@ -95,8 +98,6 @@ paths:
           description: "server Error"
           schema:
             $ref: "#/definitions/User"
-      security:
-      - api_key: []
   /auth/login:
     post:
       tags:
