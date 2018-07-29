@@ -5,7 +5,7 @@ const check = {
     const schema = Joi.object().keys({
       title: Joi.string().required(),
       category: Joi.string().required(),
-      sub_category: Joi.string().required(),
+      subCategory: Joi.string().required(),
       content: Joi.string().required(),
     });
     const { error } = Joi.validate(req.body, schema);

@@ -4,6 +4,7 @@ import server from '../server';
 const should = chai.should();
 
 chai.use(chaiHttp);
+let token = '';
 describe('User Route Controller', () => {
   it('should Create New User', (done) => {
     const values = {
@@ -15,6 +16,7 @@ describe('User Route Controller', () => {
       .post('/auth/signup')
       .send(values)
       .end((err, res) => {
+        token = res.body.token;
         res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('success');
@@ -34,6 +36,7 @@ describe('User Route Controller', () => {
       .send(values)
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.should.have.property('error');
         done();
       });
   });
@@ -85,7 +88,100 @@ describe('User Route Controller', () => {
   });
 });
 describe('Entry Route Controller', () => {
-  it('should return 401 without a token', (done) => {
+  it('should return 200 for POST /entries with a valid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/entries')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
+        done();
+      });
+  });
+  it('should return 500 for Any entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/entries')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(500);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for POST /entries with incomplete parameters', (done) => {
+    const values = {
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/entries')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for PUT /entries with incomplete parameters', (done) => {
+    const values = {
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/entries/1')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 200 for PUT /entries with complete parameters', (done) => {
+    const values = {
+      title: 'new teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/entries/1')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
+        done();
+      });
+  });
+  it('should return 401 for any entry endpoint without a token', (done) => {
     chai.request(server)
       .get('/entries')
       .end((err, res) => {
@@ -96,134 +192,68 @@ describe('Entry Route Controller', () => {
         done();
       });
   });
-  it('should return 500 for invalid token', (done) => {
-    const myToken = 'nfdbjnbgjfnbgjfnbgjnbgjnjgngjngjngnmg';
+  it('should return 200 for GET /entries/:id with a valid token', (done) => {
     chai.request(server)
-      .get('/entries')
-      // Reference => https://github.com/visionmedia/supertest/issues/250
-      .set('x-access-token', myToken)
+      .get('/entries/1')
+      .set('x-access-token', token)
       .end((err, res) => {
-        res.should.have.status(500);
+        res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entries');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
+        res.body.should.not.have.property('error');
         done();
       });
   });
-//   it('should GET one diary entries with known id', (done) => {
-//     const id1 = 2;
-//     chai.request(server)
-//       .get(`/entries/${id1}`)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('success');
-//         res.body.should.have.property('entry');
-//         res.body.entry.should.have.property('id').eql(id1);
-//         res.body.should.not.have.property('error');
-//         done();
-//       });
-// });
-//   it('should FAIL in getting one diary entry with unknown id', (done) => {
-//     const id1 = 10;
-//     chai.request(server)
-//       .get(`/entries/${id1}`)
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('error');
-//         res.body.should.not.have.property('entry');
-//         res.body.should.not.have.property('id');
-//         done();
-//       });
-// });
-//   it('should FAIL in modifying one diary entry with unknown id', (done) => {
-//     const id1 = 10;
-//     chai.request(server)
-//       .put(`/entries/${id1}`)
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('error');
-//         res.body.should.not.have.property('entry');
-//         res.body.should.not.have.property('id');
-//         done();
-//       });
-// });
-//   it('should  FAIL in deleting one diary entry with unknown id', (done) => {
-//     const id1 = 10;
-//     chai.request(server)
-//       .delete(`/entries/${id1}`)
-//       .end((err, res) => {
-//         res.should.have.status(404);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('error');
-//         res.body.should.not.have.property('entry');
-//         res.body.should.not.have.property('id');
-//         done();
-//       });
-// });
-//   // it('should DELETE one diary entries with known id', (done) => {
-//   //   const id = 2;
-//   //   chai.request(server)
-//   //     .delete(`/entries/${id}`)
-//   //     .end((err, res) => {
-//   //       res.should.have.status(200);
-//   //       res.body.should.have.property('success');
-//   //       res.body.should.not.have.property('error');
-//   //       done();
-//   //     });
-//   // });
-//   it('should Modify one diary entry with known id', (done) => {
-//     const entryAdded = new CreateEntry(1, 'One Beautiful Morning', 'Transportation', 'Brt', 'Someone paid my t-fare to work');
-//     const EntryToModify = {
-//       title: 'My worst day',
-//       category: 'Transportation',
-//       sub_category: 'Yellow Bus',
-//       content: 'Lagos conductors can be rude..',
-//     };
-//     chai.request(server)
-//       .put(`/entries/${entryAdded.id}`)
-//       .send(EntryToModify)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('success');
-//         res.body.should.have.property('entry');
-//         res.body.entry.should.have.property('id').eql(entryAdded.id);
-//         res.body.entry.should.have.property('title');
-//         res.body.entry.should.have.property('category');
-//         res.body.entry.should.have.property('sub_category');
-//         res.body.entry.should.have.property('content');
-//         res.body.should.not.have.property('error');
-//         done();
-//       });
-//   });
-//   it('should Create a new entry', (done) => {
-//     const values = {
-//       title: 'The Day i ate afang soup',
-//       category: 'Food',
-//       sub_category: 'Calabar carnival',
-//       content: 'I ate a lot of afang soup to my taste. It was fun..',
-//     };
-//     chai.request(server)
-//       .post('/entries')
-//       .send(values)
-//       .end((err, res) => {
-//         res.should.have.status(201);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('success');
-//         res.body.should.have.property('entry');
-//         res.body.entry.should.have.property('id');
-//         res.body.entry.should.have.property('date');
-//         res.body.entry.should.have.property('title');
-//         res.body.entry.should.have.property('category');
-//         res.body.entry.should.have.property('sub_category');
-//         res.body.entry.should.have.property('content');
-//         res.body.should.not.have.property('error');
-//         done();
-//       });
-//   });
+  it('should return 200 for GET /entries with a valid token', (done) => {
+    chai.request(server)
+      .get('/entries')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entries');
+        res.body.should.not.have.property('error');
+        done();
+      });
+  });
+  it('should return 404 for GET /entries/:id with a valid token and unknown id', (done) => {
+    chai.request(server)
+      .get('/entries/100')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.should.not.have.property('success');
+        done();
+      });
+  });
+  it('should return 404 for DELETE /entries/:id with a valid token and unknown id', (done) => {
+    chai.request(server)
+      .delete('/entries/4')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.should.not.have.property('success');
+        done();
+      });
+  });
+  it('should return 200 for DELETE /entries/:id with a valid token and known id', (done) => {
+    chai.request(server)
+      .delete('/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.not.have.property('error');
+        done();
+      });
+  });
 });
 
 

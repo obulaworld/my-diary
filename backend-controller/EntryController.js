@@ -18,7 +18,7 @@ class EntryController {
       } else {
         if (response.rows.length > 0) {
           const query2 = {
-            text: 'INSERT INTO entries (user_id, title, category, sub_category, content) VALUES ($1,$2,$3,$4,$5)',
+            text: 'INSERT INTO entries (user_id, title, category, sub_category, content) VALUES ($1,$2,$3,$4,$5) returning id, title, category, sub_category, content',
             values: [
               req.body.user.id, req.body.title, req.body.category, req.body.subCategory,
               req.body.content,
@@ -28,7 +28,7 @@ class EntryController {
             if (error3){
               return res.status(500).json({ error: 'Something went wrong with the process, Please try later' });
             } else {
-              return res.status(201).json({ success: 'Entry Created successfully' });
+              return res.status(201).json({ success: 'Entry Created successfully', entry: res3.rows});
             }
           });
         } else {
@@ -57,7 +57,7 @@ class EntryController {
               if (!res2.rows.length){return res.status(404).json({ error: 'Entry to modify not found' });} else{
                 const query3 = {
                   text: `UPDATE entries SET  title = $1, category = $2, sub_category = $3,
-   content = $4 WHERE id = $5`,
+   content = $4 WHERE id = $5 returning id, title, category, sub_category, content`,
                   values: [
                     req.body.title, req.body.category, req.body.subCategory,
                     req.body.content, req.params.id,
@@ -67,7 +67,7 @@ class EntryController {
                   if (error3) {
                     return res.status(500).json({ error: 'Update was not successful at this time, Try Again' });
                   }
-                  return res.status(200).json({ success: 'Entry was updated successfully' });
+                  return res.status(200).json({ success: 'Entry was updated successfully', entry: res3.rows});
                 });
               }
             }
@@ -96,7 +96,11 @@ class EntryController {
                     if (error2) {
                         return res.status(500).json({ error: 'Something went wrong with the process, Please try later' });
                     }else{
-                        return res.status(200).json({ success: 'Success', entry: res2.rows });
+                        if(res2.rows.length){
+                            return res.status(200).json({ success: 'Success', entry: res2.rows });
+                        }else{
+                            return res.status(404).json({ error: 'The entry must have been deleted' });
+                        }
                     }
                 });
             } else {
@@ -147,14 +151,28 @@ class EntryController {
         } else{
             if (response.rows.length > 0) {
                 const query2 = {
-            text: 'DELETE from entries where id = $1 LIMIT 1',
-            values: [req.params.id, ],
+            text: 'SELECT from entries where id = $1 LIMIT 1',
+            values: [req.params.id ],
                 };
                 db.query(query2, (error2, res2) => {
                     if (error2){
                         return res.status(500).json({ error: 'Something went wrong with the process, Please try later' });
                     } else{
-                        return res.status(200).json({ success: 'Successful' });
+                        if(res2.rows.length){
+                            const query2 = {
+                                text: 'DELETE from entries where id = $1',
+                                values: [req.params.id ],
+                            };
+                            db.query(query2, (error2, res2) => {
+                                if (error2){
+                                    return res.status(500).json({ error: 'Something went wrong with the process, Please try later' });
+                                } else{
+                                    return res.status(200).json({ success: 'Entry Successfully deleted' });
+                                }
+                            });
+                        }else{
+                            return res.status(404).json({ error: 'The entry you wish to delete was not found' });
+                        }
                     }
                 });
             } else {
