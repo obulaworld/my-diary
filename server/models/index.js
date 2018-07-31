@@ -1,5 +1,5 @@
 import query from './query';
-import db from '../db';
+import db from '../../db';
 
 const userParams = {
   name: 'VARCHAR',

@@ -3,6 +3,7 @@
  */
 // Reference => https://github.com/DinmaOtutu/RIDE-MY-WAY/
 import jwt from 'jsonwebtoken';
+import db from '../../db';
 
 const auth = {
   authenticate(user) {
@@ -36,8 +37,21 @@ const auth = {
     if (decoded.error) {
       return res.status(500).json({ error: 'Failed to authenticate token.' });
     }
-    req.body.user = decoded.payload;
-    next();
+    const query = {
+      text: 'Select * from users where id = $1 LIMIT 1', values: [decoded.payload.id],
+    };
+    db.query(query, (error2, response) => {
+      if (error2) {
+        return res.status(500).json({error: 'Something went wrong with the process, Please try later'});
+      } else {
+        if (response.rows.length > 0) {
+          req.decoded = decoded.payload;
+          next();
+        } else {
+          return res.status(404).json({error: 'User not found'});
+        }
+      }
+    });
   },
 };
 

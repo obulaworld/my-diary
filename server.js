@@ -8,7 +8,7 @@ import YAML from 'yamljs';
 
 
 // route to go here
-import router from './backend-routes/routes';
+import router from './server/routes/routes';
 
 const app = express();
 
