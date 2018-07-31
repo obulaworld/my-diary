@@ -1,12 +1,12 @@
 /**
  * Created by obulaworld on 7/15/18.
  */
-import DiaryController from '../backend-controller/EntryController';
-import UserController from '../backend-controller/UserController';
+import DiaryController from '../controllers/EntryController';
+import UserController from '../controllers/UserController';
 import auth from '../middlewares/auth';
-import validateEntry from '../backend-validation/Validation';
-import validateUser from '../backend-validation/UserValidation';
-import validateUser2 from '../backend-validation/LoginValidation';
+import validateEntry from '../middlewares/Validation';
+import validateUser from '../middlewares/UserValidation';
+import validateUser2 from '../middlewares/LoginValidation';
 
 
 const EntryRoute = (app) => {

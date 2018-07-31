@@ -1,4 +1,4 @@
-import db from '../db';
+import db from '../../db';
 
 const query1 = 'DROP TABLE IF EXISTS users';
 const query2 = 'DROP TABLE IF EXISTS entries';

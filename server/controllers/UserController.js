@@ -3,7 +3,7 @@
  */
 import bcrypt from 'bcrypt';
 import auth from '../middlewares/auth';
-import db from '../db';
+import db from '../../db';
 
 class UserController {
   static createUser(req, res) {

@@ -3,7 +3,7 @@
  */
 // Reference => https://github.com/DinmaOtutu/RIDE-MY-WAY/
 import jwt from 'jsonwebtoken';
-import db from '../db';
+import db from '../../db';
 
 const auth = {
   authenticate(user) {
@@ -45,7 +45,7 @@ const auth = {
         return res.status(500).json({error: 'Something went wrong with the process, Please try later'});
       } else {
         if (response.rows.length > 0) {
-          req.body.user = decoded.payload;
+          req.decoded = decoded.payload;
           next();
         } else {
           return res.status(404).json({error: 'User not found'});
