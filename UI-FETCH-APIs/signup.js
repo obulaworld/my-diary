@@ -8,24 +8,23 @@ const emailElement = document.getElementById('email');
 const passwordElement = document.getElementById('password');
 let errorCount = 0;
 
-const checkValues = (value, element, check) => {
-    if(check) {
-        // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
-        const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-        if (value === '' || !value.replace(/\s/g, '').length || !emailFilter.test(value)) {
-            errorCount += 1;
-            element.style.border = '1px solid red';
-        } else {
-            element.style.border = '1px solid green';
-        }
+const checkEmail = (value, element) =>{
+    // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
+    const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+    if (value === '' || !value.replace(/\s/g, '').length || !emailFilter.test(value)) {
+        errorCount += 1;
+        element.style.border = '1px solid red';
     } else {
+        element.style.border = '1px solid green';
+    }
+}
+const checkOthers = (value, element) => {
         if (value === '' || !value.replace(/\s/g, '').length) {
             errorCount += 1;
             element.style.border = '1px solid red';
         } else {
             element.style.border = '1px solid green';
         }
-    }
 };
 
 const registerUser = (details) => {
@@ -60,9 +59,9 @@ const checkInputs = () => {
   const name1 = nameElement.value;
   const email1 = emailElement.value;
   const password1 = passwordElement.value;
-  checkValues(name1, nameElement, false);
-  checkValues(email1, emailElement, true);
-  checkValues(password1, passwordElement, false);
+  checkOthers(name1, nameElement);
+  checkEmail(email1, emailElement);
+  checkOthers(password1, passwordElement);
 
   if (errorCount > 0) {
     successElement.style.color = 'red';
