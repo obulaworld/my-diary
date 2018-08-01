@@ -30,7 +30,8 @@
     </div>
 </header>
 <div id="add-header" align="center">
-    <h1>Add an entry</h1>
+    <h1>Edit Entry</h1>
+    <div><p id="success"></p></div>
 </div>
 <section id="boxes">
     <div class="container">
@@ -38,35 +39,35 @@
             <div class="right-card">
                 <form>
                     <div>
-                        <label for="entry_title">Title:</label><br/>
-                        <input id="entry_title" name="entry_title" required value="My First Day at School">
+                        <label for="title">Title:</label><br/>
+                        <input id="title" name="title" required>
+                        <div><p id="successT"></p></div>
                     </div>
                     <div>
-                        <label for="entry_cat">Category:</label><br/>
-                        <input id="entry_cat" name="entry_cat" value="Education">
+                        <label for="category">Category:</label><br/>
+                        <input id="category" name="category" >
+                        <div><p id="successC"></p></div>
                     </div>
                     <div>
-                        <label for="entry_sub_cat">Sub Category:</label><br/>
-                        <input id="entry_sub_cat" name="entry_sub_cat" value="Junior School">
+                        <label for="subCategory">Sub Category:</label><br/>
+                        <input id="subCategory" name="subCategory" >
+                        <div><p id="successS"></p></div>
                     </div>
                     <div>
-                        <label for="entry_text">Text:</label><br/>
-                        <textarea id="entry_text" name="entry_text" required  rows="50" cols="20"> is simply dummytext oftheprintingand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.. </textarea>
+                        <label for="content">Text:</label><br/>
+                        <textarea id="content" name="content" required rows="100" cols="70"> </textarea>
+                        <div><p id="successTe"></p></div>
                     </div>
                     <div>
-                        <a href="dashboard.html"><button>Save</button></a>
+                        <button onclick="checkInputs()" id="edit" type="button">Save</button>
                     </div>
                 </form>
             </div>
-
         </div>
-
     </div>
-
-</section>
-<footer>
+</section><footer>
     <p>My Diary, Copright &copy; 2018</p>
 </footer>
-
+<script src="../UI-FETCH-APIs/EditEntry.js"></script>
 </body>
 </html>
