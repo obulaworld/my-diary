@@ -6,7 +6,27 @@ const successElement = document.getElementById('success');
 const nameElement = document.getElementById('name');
 const emailElement = document.getElementById('email');
 const passwordElement = document.getElementById('password');
+let errorCount = 0;
 
+const checkValues = (value, element, check) => {
+    if(check) {
+        // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
+        const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+        if (value === '' || !value.replace(/\s/g, '').length || !emailFilter.test(value)) {
+            errorCount += 1;
+            element.style.border = '1px solid red';
+        } else {
+            element.style.border = '1px solid green';
+        }
+    } else {
+        if (value === '' || !value.replace(/\s/g, '').length) {
+            errorCount += 1;
+            element.style.border = '1px solid red';
+        } else {
+            element.style.border = '1px solid green';
+        }
+    }
+};
 
 const registerUser = (details) => {
   const url = 'https://my-diary-challenge.herokuapp.com/auth/signup';
@@ -36,33 +56,13 @@ const registerUser = (details) => {
 };
 
 const checkInputs = () => {
-  let errorCount = 0;
-  const name = nameElement.value;
-  const email = emailElement.value;
-  const password = passwordElement.value;
-  // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
-  const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-
-  if (name === '' || !name.replace(/\s/g, '').length) {
-    errorCount += 1;
-    nameElement.style.border = '1px solid red';
-  } else {
-    nameElement.style.border = '1px solid green';
-  }
-
-  if (email === '' || !email.replace(/\s/g, '').length || !emailFilter.test(email)) {
-    errorCount += 1;
-    emailElement.style.border = '1px solid red';
-  } else {
-    emailElement.style.border = '1px solid green';
-  }
-
-  if (password === '' || !password.replace(/\s/g, '').length) {
-    errorCount += 1;
-    passwordElement.style.border = '1px solid red';
-  } else {
-    passwordElement.style.border = '1px solid green';
-  }
+  errorCount = 0;
+  const name1 = nameElement.value;
+  const email1 = emailElement.value;
+  const password1 = passwordElement.value;
+  checkValues(name1, nameElement, false);
+  checkValues(email1, emailElement, true);
+  checkValues(password1, passwordElement, false);
 
   if (errorCount > 0) {
     successElement.style.color = 'red';
@@ -75,7 +75,7 @@ const checkInputs = () => {
 
   registerButton.setAttribute('disabled', '');
   registerButton.innerHTML = 'Creating Account';
-  const details = { name: name, password: password, email: email };
+  const details = { name: name1, password: password1, email: email1 };
 
   registerUser(details);
 };
