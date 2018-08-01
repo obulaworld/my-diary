@@ -27,7 +27,8 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'UI')));
+app.use('/', express.static(path.join(__dirname, '/UI')));
+app.use('/UI-FETCH-APIs', express.static(path.join(__dirname, '/UI-FETCH-APIs')));
 app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(cors());

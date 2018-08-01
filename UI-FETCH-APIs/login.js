@@ -31,7 +31,7 @@ const checkPassword = (password) => {
 };
 
 const loginUser = (details) => {
-const url = 'https://my-diary-challenge.herokuapp.com/auth/login';
+const url = 'https://my-diary-challenge.herokuapp.com/api/v1/auth/login';
   fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify(details) })
     .then((response) => {
       return response.json();
