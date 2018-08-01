@@ -69,3 +69,6 @@ table{  width: 100%;  border-collapse: collapse;  text-align: center;  }
         cursor: pointer;
     }
 }
+@media only screen and (max-width: 600px) {
+    header{  height: 70px;  }
+}
