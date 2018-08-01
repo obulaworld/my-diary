@@ -5,7 +5,7 @@ import db from '../../db';
 
 class EntryController {
   static home(req, res) {
-    res.status(200).send('Andela BootCamp Challenge 2.....Welcome to My Diary Api Endpoints Written by Obuladike Chisom.....');
+    res.status(200).render('index.html');
   }
 
   static createEntry(req, res) {
