@@ -1,109 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<meta name="description" content="Create,View and Update Your Diary online">
-		<meta name="keywords" content="online diary, diary, journal keeping, entry">
-		<meta name="author" content="Obuladike Chisom">
-		<title>My Diary | Dashboard</title>
-		<link rel="stylesheet" type="text/css" href="./css/general.css">
-		<link rel="stylesheet" type="text/css" href="./css/dashboard.css">
-	</head>
-	<body>
-		<header>
-			<div class="container">
-				<div class="inner">
-						<div id="branding">
-							<a href="index.html"><img src="./img/favicon.png"></a>
-						</div>
-						<div id="links"> 
-							<ul>
-								<li class="current"><a href="dashboard.html">Dashboard</a></li>
-								<li><a href="entry-add.html">Add Entry</a></li>
-								<li><a href="view-entry.html">View All Entries</a></li>
-								<li><a href="profile.html">My Profile</a></li>
-								<li onclick="logout()"><a href="index.html">Logout</a></li>
-							</ul>
-						</div>
-					</div>
-			</div>
-		</header>
-		<section id="boxes">
-			<div class="container">
-				<div class="box">
-					<div class="box-circle" align="center">5</div><br/>
-					<div><h5>Total Entries</h5></div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create,View and Update Your Diary online">
+    <meta name="keywords" content="online diary, diary, journal keeping, entry">
+    <meta name="author" content="Obuladike Chisom">
+    <title>My Diary | Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/dashboard.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="inner">
+            <div id="branding">
+                <a href="index.html"><img src="./img/favicon.png"></a>
+            </div>
+            <div id="links">
+                <ul>
+                    <li class="current"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="entry-add.html">Add Entry</a></li>
+                    <li><a href="view-entry.html">View All Entries</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                    <li onclick="logout()"><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="boxes">
+    <div class="container">
+        <!--<div class="box">-->
+        <!--<div class="box-circle" align="center" id="totalEntry">0</div><br/>-->
+        <!--<div><h5>Total Entries</h5></div>-->
 
-				</div>
-				<div class="box">
-					<div class="box-circle" align="center">5</div><br/>
-					<div><h5>No of Categories</h5></div>
-				</div>
-				<div class="box">
-					<div class="box-circle" align="center">5</div><br/>
-					<div><h5>No of Sub-Categories</h5></div>
+        <!--</div>-->
+        <!--<div class="box">-->
+        <!--<div class="box-circle" align="center" id="totalCategories">0</div><br/>-->
+        <!--<div><h5>No of Categories</h5></div>-->
+        <!--</div>-->
+        <!--<div class="box">-->
+        <!--<div class="box-circle" align="center" id="totalSubCategories">0</div><br/>-->
+        <!--<div><h5>No of Sub-Categories</h5></div>-->
 
-				</div>
-			</div>
-		</section>
-		<div align="center">
-			<h1>Recent Entries</h1>
-		</div>		
-		<section id="boxes">
-			<div class="container">
-				<div class="box2">
-					<h4>My First Day at School</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>		
+        <!--</div>-->
+    </div>
+</section>
+<div align="center">
+    <h1>Recent Entries</h1>
+</div>
+<section id="boxes">
+    <div id="box3">
+        <h4>No Entry Yet</h4>
+        <p>You currently have no entries......</p>
+        <div class="recent">
+            <a href="entry-add.html"><button class="button_1" >Create Entry</button></a>
+        </div>
+    </div>
+    <div class="container" id="box2">
+        <!--<div class="box2">-->
+        <!--<h4>My First Day at School</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box2">-->
+        <!--<h4>Daddy bought me a toy</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box2">-->
+        <!--<h4>Baby can work</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>	-->
+        <!--</div>-->
+        <!--<div class="box2">-->
+        <!--<h4>Daddy Bought a new car</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box2">-->
+        <!--<h4>The best day of my life</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box2">-->
+        <!--<h4>My teacher flogged me</h4>-->
+        <!--<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>-->
+        <!--<div class="recent">-->
+        <!--<button class="button_1">View</button>-->
+        <!--</div>	-->
+        <!--</div>-->
+    </div>
 
-				</div>
-				<div class="box2">
-					<h4>Daddy bought me a toy</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>	
-
-				</div>
-				<div class="box2">
-					<h4>Baby can work</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>	
-				</div>
-				<div class="box2">
-					<h4>Daddy Bought a new car</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>		
-
-				</div>
-				<div class="box2">
-					<h4>The best day of my life</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>	
-
-				</div>
-				<div class="box2">
-					<h4>My teacher flogged me</h3>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<div class"recent">
-						<button class="button_1">View</button>
-					</div>	
-				</div>
-			</div>
-
-		</section>
-		<footer>
-			<p>My Diary, Copright &copy; 2018</p>
-		</footer>
-
-	</body>
+</section>
+<script src="../UI-FETCH-APIs/dashboard.js"></script>
+</body>
+<footer>
+    <p>My Diary, Copright &copy; 2018</p>
+</footer>
 </html>
