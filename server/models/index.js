@@ -6,8 +6,8 @@ const userParams = {
   email: 'VARCHAR',
   password: 'VARCHAR',
   is_notifiable: 'BOOLEAN',
-  created_at: 'Timestamp',
-  updated_at: 'Timestamp',
+  created_at: 'date NOT NULL DEFAULT CURRENT_DATE',
+  updated_at: 'date NOT NULL DEFAULT CURRENT_DATE',
 }
 const entryParams = {
   user_id: 'INT',
@@ -15,8 +15,8 @@ const entryParams = {
   category: 'VARCHAR',
   sub_category: 'VARCHAR',
   content: 'TEXT',
-  created_at: 'Timestamp',
-  updated_at: 'Timestamp',
+  created_at: 'date NOT NULL DEFAULT CURRENT_DATE',
+  updated_at: 'date NOT NULL DEFAULT CURRENT_DATE',
 }
 
 query(db, 'users', userParams, () => {
