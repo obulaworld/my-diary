@@ -75,7 +75,6 @@ const checkInputs = () => {
     const details = { title: title, category: category, subCategory: subCategory, content:content };
     EditEntry(details);
 };
-
 const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
