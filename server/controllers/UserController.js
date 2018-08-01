@@ -6,7 +6,7 @@ import auth from '../middlewares/auth';
 import db from '../../db';
 
 class UserController {
-  static createUser(req, res) {
+   createUser (req, res) {
     const check = `SELECT * FROM users where email = '${req.body.email}'`;
     db.connect((error1, client) => {
       if (error1) {
@@ -21,7 +21,7 @@ class UserController {
                   } else {
                       const hash = bcrypt.hashSync(req.body.password, 10);
                       const query = { text: `insert into users ( name, email, password ) values ($1, $2, $3)returning id, name, email`,
-                          values: [ req.body.name, req.body.email, hash,],
+                          values: [ req.body.name, req.body.email, hash],
                       };
                       return client.query(query, (error3, res3) => {
                           if (error3) {
@@ -43,7 +43,7 @@ class UserController {
     });
   }
 
-  static loginUser(req, res) {
+   loginUser (req, res) {
     const query = {
       text: 'select id, name, password, is_notifiable from users where email = $1 LIMIT 1',
       values: [req.body.email ],
@@ -54,19 +54,19 @@ class UserController {
       }else{
           const user = response.rows[0];
           if (!response.rows.length) {
-              return res.status(401).send({ error: 'Sorry, Invalid E-mail' });
+              return res.status(401).send({ error: 'Invalid Email or Password' });
           }else{
               const check = bcrypt.compareSync(req.body.password, user.password);
               if (check) {
                   const token = auth.authenticate(user);
                   delete user.password;
-                  return res.status(200).send({ user, token });
+                  return res.status(200).send({ success: 'success', user, token });
               } else {
-                  return res.status(401).send({ error: 'Invalid Password' });
+                  return res.status(401).send({ error: 'Invalid Email or Password' });
               }
           }
       }
     });
   }
 }
-export default UserController;
+export default new UserController();

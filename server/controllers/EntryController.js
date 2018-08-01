@@ -4,11 +4,11 @@
 import db from '../../db';
 
 class EntryController {
-  static home(req, res) {
+   home(req, res) {
     res.status(200).render('index.html');
   }
 
-  static createEntry(req, res) {
+   createEntry(req, res) {
       const query2 = {
         text: 'INSERT INTO entries (user_id, title, category, sub_category, content) VALUES ($1,$2,$3,$4,$5) returning id, user_id, title, category, sub_category, content',
         values: [
@@ -25,7 +25,7 @@ class EntryController {
       });
   }
 
-  static editEntry(req, res) {
+   editEntry(req, res) {
           const query2 = {
             text: 'Select * from entries where id = $1 AND user_id = $2 LIMIT 1', values: [req.params.id, req.decoded.id ],
           };
@@ -53,7 +53,7 @@ class EntryController {
           });
   }
 
-  static getEntryById(req, res) {
+   getEntryById(req, res) {
         const query2 = {
             text: 'Select * from entries where id = $1 AND user_id = $2 LIMIT 1',
             values: [req.params.id, req.decoded.id],
@@ -71,7 +71,7 @@ class EntryController {
         });
   }
 
-  static getAllEntries(req, res) {
+   getAllEntries(req, res) {
         const query2 = {
             text: 'Select * from entries where user_id = $1',
             values: [req.decoded.id],
@@ -80,37 +80,37 @@ class EntryController {
             if (error2) {
                 return res.status(400).json({ error: 'Something went wrong with the process, Please try later' });
             }else{
-                return res.status(200).json({ success: 'Success', entries: res2.rows });
+                if(res2.rows.length > 0) {
+                    return res.status(200).json({ success: 'Success', entries: res2.rows });
+                } else {
+                    return res.status(200).json({ success: 'Success', message: 'You are yet to post a diary entry' });
+                }
             }
         });
   }
 
-  static deleteEntry(req, res) {
-      const query2 = {
-          text: 'SELECT from entries where id = $1 AND user_id = $2 LIMIT 1',
-          values: [req.params.id,  req.decoded.id],
-      };
+   deleteEntry(req, res) {
+      const query2 = { text: 'SELECT from entries where id = $1 LIMIT 1', values: [req.params.id],};
       db.query(query2, (error2, res2) => {
-          if (error2) {
-              return res.status(400).json({error: 'Something went wrong with the process, Please try later'});
+          if (error2) { return res.status(400).json({error: 'Something went wrong with the process, Please try later' });
           } else {
               if (res2.rows.length) {
-                  const query2 = {
-                      text: 'DELETE from entries where id = $1',
-                      values: [req.params.id],
-                  };
-                  db.query(query2, (error2, res2) => {
-                      if (error2) {
-                          return res.status(400).json({error: 'Something went wrong with the process, Please try later'});
+                  const query5 = { text: 'SELECT from entries where id = $1 AND user_id = $2 LIMIT 1', values: [req.params.id,  req.decoded.id] };
+                  db.query(query5, (error5, res5) => {
+                      if (error5) { return res.status(400).json({error: 'Something went wrong with the process, Please try later'});
                       } else {
-                          return res.status(200).json({success: 'Entry Successfully deleted'});
+                          if(res5.rows.length) {
+                              const query3 = { text: 'DELETE from entries where id = $1', values: [req.params.id] };
+                              db.query(query3, (error3, res3) => {
+                                  return res.status(200).json({success: 'Entry Successfully deleted'});
+                              });
+                          } else { return res.status(404).json({error: 'Entry does not belong to you' });
+                          }
                       }
                   });
-              } else {
-                  return res.status(404).json({error: 'The entry you wish to delete was not found or does not belong to you'});
-              }
+              } else { return res.status(404).json({error: 'Entry not found' });}
           }
       });
   }
 }
-export default EntryController;
+export default new EntryController();
