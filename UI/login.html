@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<meta name="description" content="Create,View and Update Your Diary online">
-		<meta name="keywords" content="online diary, diary, journal keeping, entry">
-		<meta name="author" content="Obuladike Chisom">
-		<title>My Diary | Login</title>
-		<link rel="stylesheet" type="text/css" href="./css/general.css">
-		<link rel="stylesheet" type="text/css" href="./css/login.css">
-	</head>
-	<body>
-		<section class="container" align="center">
-			<div class="card">
-				<div class="inner-card">
-					<div class="left-card">
-						<a href="index.html"><img src="./img/favicon.png"></a>
-						<h2>Login To MyDiary</h2>
-						<div id="diary-image">
-							<img id="image-dairy" src="./img/diary.png">
-						</div>	
-					</div>
-					<div class="right-card">
-						<form>
-						<div id="diary-image2">
-							<a href="index.html"><img src="./img/favicon.png"></a>
-						</div>	
-						<div>
-							<label for="login_email">E-Mail Address:</label><br/>
-							<input type="email" id="login_email" required> 
-						</div>
-						<div>
-							<label for="login_password">Password:</label><br/>
-							<input type="password" id="login_password" required> 
-						</div>
-						<div align="center" class="login-button">
-							<a href="dashboard.html"><button>Log In</button></a>
-						</div>
-						</form>
-						<h3><a href="" class="turn">Forgot password?</a></h3>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Create,View and Update Your Diary online">
+    <meta name="keywords" content="online diary, diary, journal keeping, entry">
+    <meta name="author" content="Obuladike Chisom">
+    <title>My Diary | Login</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
+</head>
+<body>
+<section class="container" align="center">
+    <div class="card">
+        <div class="inner-card">
+            <div class="left-card">
+                <a href="index.html"><img src="./img/favicon.png"></a>
+                <h2>Login To MyDiary</h2>
+                <div id="diary-image">
+                    <img id="image-dairy" src="./img/diary.png">
+                </div>
+            </div>
+            <div class="right-card">
+                <form>
+                    <div id="diary-image2">
+                        <a href="index.html"><img src="./img/favicon.png"></a>
+                    </div>
+                    <div>
+                        <label for="email">E-Mail Address:</label><br/>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password:</label><br/>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div align="center" class="login-button">
+                        <button type="button" id="login" onclick="checkLogin()">Log In</button>
+                    </div>
+                    <div><p id="success"></p></div>
+                </form>
+                <h3><a href="" class="turn">Forgot password?</a></h3>
 
-						<hr/>
-						<h3>New to MyDiary? <a href="register.html" class="turn">SignUp Here</a></h3>
-					</div>
-				</div>
-			</div>
-		</section>
-	</body>
+                <hr/>
+                <h3>New to MyDiary? <a href="register.html" class="turn">SignUp Here</a></h3>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../UI-FETCH-APIs/login.js"></script>
+</body>
 </html>
