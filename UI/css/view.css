@@ -6,9 +6,12 @@ h3 {  margin-top: 5% !important;  }
 
     header{  height: 30px;  }
 
-    #boxes .box2 { /* float: left; */  width: 70%;  padding: 5px;  height: 1000px;  margin-left: 200px;  box-shadow: 6px 10px 20px #e3e7ea;  border: 1px solid;  border-color: blanchedalmond; /* border-radius: 20px; */  background-color: white;  text-align: center;  margin-right: 20px;  }
+    #boxes .box2 { /* float: left; */  width: 70%;  padding: 5px;  height: 1000px;  margin-left: 15%;  box-shadow: 6px 10px 20px #e3e7ea;  border: 1px solid;  border-color: blanchedalmond; /* border-radius: 20px; */  background-color: white;  text-align: center;  margin-right: 20px;  }
 
     footer {  padding: 20px;  margin-top: 400px;  height: 100px;  color: #ffffff;  text-align: center;  background-color: black;  }
+}
+@media only screen and (max-width: 600px) {
+    header{  height: 70px;  }
 }
 
 
