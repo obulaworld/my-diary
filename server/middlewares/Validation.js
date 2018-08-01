@@ -1,6 +1,7 @@
-let pass = true;
+
 const check = {
   validate(req, res, next) {
+      let pass = true;
       const values = req.body;
       const required = ['title', 'category', 'subCategory', 'content'];
       let errors = {};
