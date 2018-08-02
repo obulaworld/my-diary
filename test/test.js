@@ -40,20 +40,20 @@ describe('User Route Controller', () => {
         done();
       });
   });
-  it('Login an existing user', (done) => {
-    const values = {
-      email: 'me2@gmail.com',
-      password: 'password',
-    };
-    chai.request(server)
-      .post('/api/v1/auth/login')
-      .send(values)
-      .end((err, res) => {
-        if (err) done(err);
-        res.should.have.status(200);
-        done();
-      });
-  });
+  // it('Login an existing user', (done) => {
+  //   const values = {
+  //     email: 'me2@gmail.com',
+  //     password: 'password',
+  //   };
+  //   chai.request(server)
+  //     .post('/api/v1/auth/login')
+  //     .send(values)
+  //     .end((err, res) => {
+  //       if (err) done(err);
+  //       res.should.have.status(200);
+  //       done();
+  //     });
+  // });
   it('Return 401 for invalid email during login', (done) => {
     const values = {
       email: 'g@gmail.com',
