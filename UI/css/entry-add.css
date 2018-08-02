@@ -62,7 +62,7 @@ textarea{
         text-align: center; /* margin-right: 20px; */
     }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     header{height: 150px !important;}
     h5{color: black}
     #boxes{

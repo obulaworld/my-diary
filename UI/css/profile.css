@@ -136,7 +136,7 @@ label{
         vertical-align: top;
         border-top: 1px solid #dee2e6;
         color: #111111;
-        font-size: 5pt;
+        font-size: 7pt;
     }
     #boxes .box2{
         width: 100%;
@@ -148,6 +148,6 @@ label{
         background-color: white;
         text-align: center;
         margin-right: 0;
-        margin-left: 0;
+        margin-left: 8%;
     }
 }
