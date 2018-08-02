@@ -12,12 +12,15 @@ export default (req, res, next) => {
     for (let i = 0; i < required.length; i += 1) {
         if (!values[required[i]]) { pass = false; errors[required[i]] = `${required[i]} is required`; }
     }
-    if(values.email && (!values.email.replace(/\s/g, '').length || !emailFilter.test(values.email))) {
+    if(values.email && (!values.email.replace(/\s/g, '').length || !emailFilter.test(values.email.trim()))) {
         errors.email = 'Email can not be blank or format is wrong'; pass = false;
     }
     if(values.password && !values.password.replace(/\s/g, '').length) {
         errors.password = 'Password can not be blank'; pass = false;
     }
     console.log(pass);
-    if (pass === false) { res.status(400).json({ error: errors }); } else { next(); }
+    if (pass === false) { res.status(400).json({ error: errors }); } else {
+        req.body.email = req.body.email.trim();
+        req.body.password = req.body.password.trim();
+        next(); }
 };
