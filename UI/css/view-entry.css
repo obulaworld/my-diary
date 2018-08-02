@@ -1,6 +1,6 @@
 
 @media  (min-width : 992px) {
-	#boxes .box2{ /* float: left; */  width: 50%;
+    #boxes .box2{ /* float: left; */  width: 50%;
         padding: 5px;
         height: 500px;
         margin-left: 330px;
@@ -12,7 +12,7 @@
 }
 
 @media  (min-width : 768px) {
-	#boxes .box2 { /* float: left; */ /*width: 95%;*/
+    #boxes .box2 { /* float: left; */ /*width: 95%;*/
         padding: 5px;  height: 700px; /* margin-left: 330px; */
         box-shadow: 6px 10px 20px #e3e7ea;
         border: 1px solid;
@@ -64,8 +64,11 @@ table{  width: 100%;  border-collapse: collapse;  text-align: center;  }
         background: #6c2726;
         color: white;
         border-bottom: solid 4px #222;
-         font-size: inherit !important;
+        font-size: inherit !important;
         padding: 10px 20px;
         cursor: pointer;
     }
+}
+@media only screen and (max-width: 768px) {
+    header{height: 150px !important;}
 }
