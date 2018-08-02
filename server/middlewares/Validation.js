@@ -21,8 +21,8 @@ const check = {
       errors.content = 'Content can not be blank'; pass = false;
   }
     if (pass === false) { res.status(400).json({ error: errors }); } else {
-        req.body.title = req.body.title.replace(/\s+|\s+$|^\./g, ' '); req.body.category = req.body.category.replace(/\s+|\s+$|^\./g, ' ');
-        req.body.subCategory = req.body.subCategory.replace(/\s+|\s+$|^\./g, ' '); req.body.content = req.body.content.replace(/\s+|\s+$|^\./g, ' ');
+        req.body.title = req.body.title.trim(); req.body.category = req.body.category.trim();
+        req.body.subCategory = req.body.subCategory.trim(); req.body.content = req.body.content.trim();
           next();} },
 };
 
