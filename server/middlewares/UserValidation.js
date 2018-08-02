@@ -6,6 +6,7 @@ export default (req, res, next) => {
     let pass = true;
     // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     const emailFilter = /^([a-zA-Z0-9_\s.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+    if(req.body.email) req.body.email = req.body.email.trim();
     const values = req.body;
     const required = ['email', 'password', 'name'];
     let errors = {};
