@@ -30,8 +30,8 @@ const checkOthers = (value,name, element1, element2) => {
 };
 
 const EditEntry = (details) => {
-    // const url = `https://my-diary-challenge.herokuapp.com/entries/${entry.id}`;
-    const url = `http://localhost:3000/entries/${entry.id}`;
+    const url = `https://my-diary-challenge.herokuapp.com/api/v1/entries/${entry.id}`;
+    // const url = `http://localhost:3000/entries/${entry.id}`;
     fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token }, body: JSON.stringify(details) })
         .then((response) => {
             return response.json();
