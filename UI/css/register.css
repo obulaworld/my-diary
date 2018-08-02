@@ -25,13 +25,13 @@
 
 @media (max-width : 480px) {
 
-	.container .card .inner-card {
+    .container .card .inner-card {
         box-shadow:inherit !important;
     }
-	#diary-image2{
+    #diary-image2{
         display: block;
     }
-	.container .card .right-card {
+    .container .card .right-card {
         border:1px solid #6c2726;
         width: 452px;
         border-top-right-radius: 6px;
@@ -43,7 +43,7 @@
         padding: 40px 45px;
     }
 
-	.container .card .left-card {
+    .container .card .left-card {
         display: none;
         left: 0px;
         z-index: 1000;
@@ -58,91 +58,90 @@
         color: white;
     }
 }
-	.container h1 {
-        margin-top: 0 !important;
-    }
+.container h1 {
+    margin-top: 0 !important;
+}
 
-    .register-button{
-        margin-top: 1%;
-    }
+.register-button{
+    margin-top: 1%;
+}
 
-	.container {
-        font-size: 13px;
-        width: inherit !important;
-        height: inherit !important;
-    }
+.container {
+    font-size: 13px;
+    width: inherit !important;
+    height: inherit !important;
+}
 
- 	.card{
-        padding-top: 40px;
-        padding-bottom: 0px;
-        margin-left: 170px;
-    }
+.card{
+    padding-top: 40px;
+    padding-bottom: 0px;
+    margin-left: 170px;
+}
 
-	.container .card .inner-card{
-        width: 1000px;
-        height: 580px;
-        box-shadow: 0 8px 20px #e3e7ea;
-    }
+.container .card .inner-card{
+    width: 1000px;
+    height: 580px;
+    box-shadow: 0 8px 20px #e3e7ea;
+}
 
-	.container .card .inner-card .top-text{
-        padding-left: 383px;
-        width: 930px;
-        box-shadow: 0 8px 20px #e3e7ea;
-    }
+.container .card .inner-card .top-text{
+    padding-left: 383px;
+    width: 930px;
+    box-shadow: 0 8px 20px #e3e7ea;
+}
 
-	.container .card  .left-card h1 {
-        font-size: 20px;
-        letter-spacing: 1px;
-        color: #ffffff;
-        line-height: 29px;
-        margin-bottom: 5px;
-    }
+.container .card  .left-card h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    line-height: 29px;
+    margin-bottom: 5px;
+}
 
-    input{
-        background-color: #f4f9fb;
-        border: 0;
-        box-shadow: 0px 1px 1px 0px #E6E9EC;
-        color: #555;
-        margin-bottom: 20px;
-        height: 40px;
-        padding: 5px 10px;
-        width: 80%;
-    }
+input{
+    background-color: #f4f9fb;
+    border: 0;
+    box-shadow: 0px 1px 1px 0px #E6E9EC;
+    color: #555;
+    margin-bottom: 20px;
+    height: 40px;
+    padding: 5px 10px;
+    width: 80%;
+}
 
-	.turn{
-        margin-top: 50%;
-        color: #6c2726;
-        text-decoration: none;
-    }
-    label{
-        float: left;
-        margin-left: 8%;
-    }
+.turn{
+    margin-top: 50%;
+    color: #6c2726;
+    text-decoration: none;
+}
+label{
+    float: left;
+    margin-left: 8%;
+}
 
-	hr{
-        margin-top: 50px;
-    }
+hr{
+    margin-top: 50px;
+}
 
-	h3 {
-        margin-top: 5% !important;
-        color:#6c2726
-    }
+h3 {
+    margin-top: 5% !important;
+    color:#6c2726
+}
 
-	#diary-image{
-        margin-top: 160px;
-    }
+#diary-image{
+    margin-top: 160px;
+}
 
-	#image-dairy{
-        width: 80%;
-    }
+#image-dairy{
+    width: 80%;
+}
 
 @media (min-width : 992px) {
 
-	#diary-image2 {
-		display: none;
-	}
+    #diary-image2 {
+        display: none;
+    }
 }
 
-	.go-right{  float: right;  }
-
+.go-right{  float: right;  }
 

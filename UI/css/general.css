@@ -1,4 +1,4 @@
-body{  font: 15px/1.5 Arial, Helvetica, sans-serif;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: cursive;  }
+body{  font: 15px/1.5 Arial;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: Georgia;  }
 /* Header **/
 header{  background: #6c2726;  color: #ffffff;  padding-top: 30px;  min-height: auto;  height: 25px;  border-bottom: #e8491d 3px solid;  }
 
@@ -53,6 +53,6 @@ footer {  padding: 20px;  margin-top: 600px;  height: 100px;  color: #ffffff;  t
 label{  color: black;  font-size: 13pt;  }
 
 @media (max-width : 480px ) {
-   #branding{ float: inherit !important; font-family: Courier !important;  margin-top: -20px;  }
+    #branding{ float: inherit !important; font-family: Courier !important;  margin-top: -20px;  }
     header{height: 150px !important;}
 }
