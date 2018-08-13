@@ -210,6 +210,73 @@ describe('Entry Route Controller', () => {
         done();
       });
   });
+  it('should return 400 for put entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
   it('should return 400 for POST /entries with incomplete parameters', (done) => {
     const values = {
       category: 'education',
