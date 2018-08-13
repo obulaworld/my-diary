@@ -5,7 +5,7 @@ const userParams = {
   name: 'VARCHAR',
   email: 'VARCHAR',
   password: 'VARCHAR',
-  is_notifiable: 'BOOLEAN',
+  is_notifiable: 'BOOLEAN DEFAULT FALSE',
   created_at: 'date NOT NULL DEFAULT CURRENT_DATE',
   updated_at: 'date NOT NULL DEFAULT CURRENT_DATE',
 }

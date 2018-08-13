@@ -9,15 +9,13 @@ class UserController {
    createUser (req, res) {
     const check = `SELECT * FROM users where email = '${req.body.email}'`;
     db.connect((error1, client) => {
-      if (error1) {
-          res.status(400).json({ error: 'Something went wrong with the process, Please try later' });
+      if (error1) { res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
       } else {
           return client.query(check, (error2, res2) => {
-              if (error2) {
-                   res.status(400).json({ error: 'Something went wrong with the process, Please try later' });
+              if (error2) { res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
               }else{
                   if (res2.rows.length) {
-                       res.status(409).json({ error: `Email ${req.body.email} already exists` });
+                       res.status(409).json({ success: false, message: `Email ${req.body.email} already exists` });
                   } else {
                       const hash = bcrypt.hashSync(req.body.password, 10);
                       const query = { text: `insert into users ( name, email, password ) values ($1, $2, $3)returning id, name, email`,
@@ -25,15 +23,11 @@ class UserController {
                       };
                       return client.query(query, (error3, res3) => {
                           if (error3) {
-                               res.status(400).json({ error: 'Something went wrong with the process, Please try later' });
+                               res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
                           } else {
                               const createdUser = res3.rows[0];
                               const userToken = auth.authenticate(createdUser);
-                              return res.status(201).send({
-                                  success: 'success',
-                                  user: createdUser,
-                                  token: userToken,
-                              });
+                              return res.status(201).send({ success: true, message: 'success', user: createdUser, token: userToken, });
                           }
                       });
                   }
@@ -50,19 +44,19 @@ class UserController {
     };
     db.query(query, (error1, response) => {
       if (error1) {
-          res.status(400).json({ error: 'Something went wrong with the process, Please try later' });
+          res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
       }else{
           const user = response.rows[0];
           if (!response.rows.length) {
-              return res.status(401).send({ error: 'Invalid Email or Password' });
+              return res.status(401).send({ success: false, message: 'Invalid Email or Password' });
           }else{
               const check = bcrypt.compareSync(req.body.password, user.password);
               if (check) {
                   const token = auth.authenticate(user);
                   delete user.password;
-                  return res.status(200).send({ success: 'success', user, token });
+                  return res.status(200).send({ success: true, message: 'success', user, token });
               } else {
-                  return res.status(401).send({ error: 'Invalid Email or Password' });
+                  return res.status(401).send({ success: false, message: 'Invalid Email or Password' });
               }
           }
       }

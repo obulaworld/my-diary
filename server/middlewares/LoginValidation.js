@@ -20,7 +20,7 @@ export default (req, res, next) => {
         errors.password = 'Password can not be blank'; pass = false;
     }
     console.log(pass);
-    if (pass === false) { res.status(400).json({ error: errors }); } else {
+    if (pass === false) { res.status(400).json({ success: false, message: errors }); } else {
         req.body.email = req.body.email.trim();
         req.body.password = req.body.password.trim();
         next(); }

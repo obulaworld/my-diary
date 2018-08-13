@@ -20,7 +20,7 @@ const check = {
   if(values.content && !values.content.replace(/\s/g, '').length) {
       errors.content = 'Content can not be blank'; pass = false;
   }
-    if (pass === false) { res.status(400).json({ error: errors }); } else {
+    if (pass === false) { res.status(400).json({ success: false, message: errors }); } else {
         req.body.title = req.body.title.trim(); req.body.category = req.body.category.trim();
         req.body.subCategory = req.body.subCategory.trim(); req.body.content = req.body.content.trim();
           next();} },
