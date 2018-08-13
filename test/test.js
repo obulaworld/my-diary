@@ -137,6 +137,7 @@ describe('Entry Route Controller', () => {
       .send(values)
       .end((err, res) => {
         res.should.have.status(400);
+<<<<<<< HEAD
         res.body.should.be.a('object');
         res.body.should.have.property('message');
         res.body.should.not.have.property('entry');
@@ -206,6 +207,77 @@ describe('Entry Route Controller', () => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('message');
+=======
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for put entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+>>>>>>> 122a7612c5c2a446a1634db33e483e4a06d4e776
         res.body.should.not.have.property('entry');
         done();
       });
@@ -356,6 +428,7 @@ describe('Entry Route Controller', () => {
   //       done();
   //     });
   // });
+
 });
 
 
