@@ -23,7 +23,7 @@ export default (req, res, next) => {
     if(values.name && !values.name.replace(/\s/g, '').length) {
         errors.name = 'Name can not be blank'; pass = false;
     }
-    if (pass === false) { res.status(400).json({ error: errors }); } else {
+    if (pass === false) { res.status(400).json({ success: false, message: errors }); } else {
         req.body.name = req.body.name.trim();req.body.password = req.body.password.trim();
         req.body.email = req.body.email.trim();
         next();
