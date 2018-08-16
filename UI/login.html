@@ -2,16 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="Create,View and Update Your Diary online">
     <meta name="keywords" content="online diary, diary, journal keeping, entry">
     <meta name="author" content="Obuladike Chisom">
     <title>My Diary | Login</title>
     <link rel="stylesheet" type="text/css" href="./css/general.css">
     <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <style>
+        @media screen and (min-width: 600px){
+            .container .card  .left-card {
+                display: block;
+            }
+            .container .card .inner-card {
+                display: flex;
+            }
+            .container .card .right-card {
+                width: 60%;
+            }
+            .container .card .left-card {
+                width: 40%;
+            }
+        }
+        @media screen and (min-width: 900px){
+            body {
+                width: 900px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-<section class="container" align="center">
+<header>
+    <div class="container">
+        <div class="inner">
+            <div id="branding">
+                <a href="index.html"><img src="./img/favicon.png"></a>
+            </div>
+            <div id="links">
+                <ul>
+                    <li><a href="index.html">Home</a>
+                    <li class="current"><a href="login.html">Login</a>
+                    <li><a href="register.html">Sign up</a>
+                        <!--<li><a href="dashboard.html">Dashboard</a>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header>
+<section class="container">
     <div class="card">
         <div class="inner-card">
             <div class="left-card">

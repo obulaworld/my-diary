@@ -2,13 +2,36 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="description" content="Create,View and Update Your Diary online">
 		<meta name="keywords" content="online diary, diary, journal keeping, entry">
 		<meta name="author" content="Obuladike Chisom">
 		<title>My Diary | Home</title>
 		<link rel="stylesheet" type="text/css" href="./css/general.css">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
+        <style>
+            @media screen and (min-width: 550px){
+                #boxes .box{
+                    width:42%;
+                    height: 100%;
+                }
+            }
+            @media screen and (min-width: 800px){
+                #boxes .box {
+                    width: 28%;
+                    height: 100%;
+                }
+            }
+
+            @media screen and (min-width: 900px){
+                body {
+                    width: 900px;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+
+        </style>
 	</head>
 	<body>
 		<header>
@@ -17,6 +40,7 @@
 						<div id="branding">
 							<a href="index.html"><img src="./img/favicon.png"></a>
 						</div>
+                        <!--<nav></nav>-->
 						<div id="links"> 
 							<ul>
 								<li class="current"><a href="index.html">Home</a>
@@ -60,29 +84,26 @@
 					<h4>Easy</h4>
 					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 				</div>
+                <div class="box">
+                    <img class="box-images" src="./img/book4.jpg">
+                    <h4>Safe and Secure</h4>
+                    <p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>
+
+                </div>
+                <div class="box">
+                    <img class="box-images" src="./img/diary.jpeg">
+                    <h4>Flexible</h4>
+                    <p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>
+
+                </div>
+                <div class="box">
+                    <img class="box-images" src="./img/diary1.jpeg">
+                    <h4>Storage</h4>
+                    <p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                </div>
 			</div>
 		</section>
-		<section id="boxes">
-			<div class="container">
-				<div class="box">
-					<img class="box-images" src="./img/book4.jpg">
-					<h4>Safe and Secure</h4>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book..</p>
 
-				</div>
-				<div class="box">
-					<img class="box-images" src="./img/diary.jpeg">
-					<h4>Flexible</h4>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. .</p>
-
-				</div>
-				<div class="box">
-					<img class="box-images" src="./img/diary1.jpeg">
-					<h4>Storage</h4>
-					<p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				</div>
-			</div>
-		</section>
 
 		<!-- <section id="showcase">
 			<div class="container">
