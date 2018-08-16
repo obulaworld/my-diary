@@ -1,5 +1,5 @@
 .container{
-    width: 80%;
+    width: 100%;
 }
 .container-sign{
     background: #2e9adf;
@@ -21,59 +21,61 @@
     text-align: initial;
     border-top: 1px solid #dee2e6;
     color: #111111;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
-@media (max-width : 480px) {
-    .table {
-        margin-bottom: 1rem;
-        background-color: transparent;
-    }
+/*@media (max-width : 480px) {*/
+    /*.table {*/
+        /*margin-bottom: 1rem;*/
+        /*background-color: transparent;*/
+    /*}*/
 
-    .table td, .table th {
-        padding: .7rem;
-        text-align: initial;
-        vertical-align: top;
-        border-top: 1px solid #dee2e6;
-        color: #111111;
-    }
-		#boxes .box2{
-            float: left;
-            width: 70%;
-            padding: 5px;
-            box-shadow: 6px 10px 20px #e3e7ea;
-            height: 100%;
-            margin-left: 100px;
-            border: 1px solid;
-            border-color: blanchedalmond; /* border-radius: 20px; */
-            background-color: white;
-            text-align: center;
-            margin-right: 20px;  }
-	}
+    /*.table td, .table th {*/
+        /*padding: .7rem;*/
+        /*text-align: initial;*/
+        /*vertical-align: top;*/
+        /*border-top: 1px solid #dee2e6;*/
+        /*color: #111111;*/
+    /*}*/
+		/*#boxes .box2{*/
+            /*float: left;*/
+            /*width: 70%;*/
+            /*padding: 5px;*/
+            /*box-shadow: 6px 10px 20px #e3e7ea;*/
+            /*height: 100%;*/
+            /*margin-left: 100px;*/
+            /*border: 1px solid;*/
+            /*border-color: blanchedalmond; !* border-radius: 20px; *!*/
+            /*background-color: white;*/
+            /*text-align: center;*/
+            /*margin-right: 20px;  }*/
+	/*}*/
 
-@media (min-width: 992px) {
-    .table {
-        margin-bottom: 1rem;
-        background-color: transparent;
-    }
-    .table td, .table th {
-        padding: .7rem;
-        text-align: initial;
-        vertical-align: top;
-        border-top: 1px solid #dee2e6;
-        color: #111111;
-    }
-		#boxes .box2{
-            float: left;
-            width: 30%;
-            padding: 5px;
-            box-shadow: 6px 10px 20px #e3e7ea;
-            height: 100px;
-            margin-left: 330px;
-            border: 1px solid;
-            border-color: blanchedalmond; /* border-radius: 20px; */
-            background-color: white;
-            text-align: center;
-            margin-right: 20px;  }  }
+/*@media (min-width: 992px) {*/
+    /*.table {*/
+        /*margin-bottom: 1rem;*/
+        /*background-color: transparent;*/
+    /*}*/
+    /*.table td, .table th {*/
+        /*padding: .7rem;*/
+        /*text-align: initial;*/
+        /*vertical-align: top;*/
+        /*border-top: 1px solid #dee2e6;*/
+        /*color: #111111;*/
+    /*}*/
+		/*#boxes .box2{*/
+            /*float: left;*/
+            /*width: 30%;*/
+            /*padding: 5px;*/
+            /*box-shadow: 6px 10px 20px #e3e7ea;*/
+            /*height: 100px;*/
+            /*margin-left: 330px;*/
+            /*border: 1px solid;*/
+            /*border-color: blanchedalmond; !* border-radius: 20px; *!*/
+            /*background-color: white;*/
+            /*text-align: center;*/
+            /*margin-right: 20px;  }  }*/
 
 input {
     background-color: #f4f9fb;
@@ -92,7 +94,7 @@ label{
     font-size: 13pt;  }
 
 #boxes .box2{
-    width: 70%;
+    width: 100%;
     padding: 5px;
     height: 100%;
     box-shadow: 6px 10px 20px #e3e7ea;
@@ -100,7 +102,7 @@ label{
     border-color: blanchedalmond; /* border-radius: 20px; */
     background-color: white;
     text-align: center;
-    margin-right: 400px;  }
+     }
 
 .right-card h3{
     color: black;
@@ -108,18 +110,9 @@ label{
 
 .right-card label{  color: black;  }
 
-.box-circle{
-    border-radius: 50%;
-    width: 10%;
-    border: 1px;
-    background-color: green;
-    float: left;
-    margin-left: 170px;
-    margin-top: 20px;
-}
 footer {
     padding: 20px;
-    margin-top: 800px !important;
+    margin-top: 100px !important;
     height: 100px;
     color: #ffffff;
     text-align: center;

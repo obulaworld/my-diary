@@ -1,58 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<meta name="description" content="Create,View and Update Your Diary online">
-		<meta name="keywords" content="online diary, diary, journal keeping, entry">
-		<meta name="author" content="Obuladike Chisom">
-		<title>My Diary | Register</title>
-		<link rel="stylesheet" type="text/css" href="./css/general.css">
-		<link rel="stylesheet" type="text/css" href="./css/register.css">
-	</head>
-	<body>
-		<section class="container" align="center">
-			<div class="card">
-				<div class="inner-card">
-					<div class="left-card">
-						<a href="index.html"><img src="./img/favicon.png"></a>
-						<h1>Get Your MyDiary Account</h1>
-						<div id="diary-image">
-							<img id="image-dairy" src="./img/diary.png">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Create,View and Update Your Diary online">
+    <meta name="keywords" content="online diary, diary, journal keeping, entry">
+    <meta name="author" content="Obuladike Chisom">
+    <title>My Diary | Register</title>
+    <link rel="stylesheet" type="text/css" href="./css/general.css">
+    <link rel="stylesheet" type="text/css" href="./css/register.css">
+    <style>
+        @media screen and (min-width: 600px){
+            .container .card  .left-card {
+                display: block;
+            }
+            .container .card .inner-card {
+                display: flex;
+            }
+            .container .card .right-card {
+                width: 60%;
+            }
+            .container .card .left-card {
+                width: 40%;
+            }
+        }
+        @media screen and (min-width: 900px){
+            body {
+                width: 900px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="inner">
+            <div id="branding">
+                <a href="index.html"><img src="./img/favicon.png"></a>
+            </div>
+            <div id="links">
+                <ul>
+                    <li ><a href="index.html">Home</a>
+                    <li><a href="login.html">Login</a>
+                    <li class="current"><a href="register.html">Sign up</a>
+                        <!--<li><a href="dashboard.html">Dashboard</a>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
-						</div>	
-					</div>
-					<div class="right-card">
-						<form>
-							<div id="diary-image2">
-								<a href="index.html"><img src="./img/favicon.png"></a>
-							</div>
-							<div>
-							<label for="login_email">Full Name:</label><br/>
-							<input type="email" id="register_full_name" required> 
-						</div>
-						<div>
-							<label for="login_email">E-Mail Address:</label><br/>
-							<input type="email" id="register_email" required> 
-						</div>
-						<div>
-							<div class="go-left">
-								<label for="register_password">Password:</label><br/>
-								<input type="password" id="register_password" name="register_password" required> 
-							</div>
-			
-						</div>
-						<div align="center" class="register-button">
-							<button>Register</button>
-						</div>
-						</form>
+<section class="container" align="center">
+    <div class="card">
+        <div class="inner-card">
+            <div class="left-card">
+                <a href="index.html"><img src="./img/favicon.png"></a>
+                <h1>Get Your MyDiary Account</h1>
+                <div id="diary-image">
+                    <img id="image-dairy" src="./img/diary.png">
 
-						<hr/>
-						<h3>Have an account? <a href="login.html" class="turn">Login</a></h3>
-					</div>
-				</div>
-			</div>
-		</section>
-	0
-	</body>
+                </div>
+            </div>
+            <div class="right-card">
+                <form>
+                    <div id="diary-image2">
+                        <a href="index.html"><img src="./img/favicon.png"></a>
+                    </div>
+                    <div>
+                        <label for="name">Full Name:</label><br/>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div>
+                        <label for="email">E-Mail Address:</label><br/>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div>
+                        <div class="go-left">
+                            <label for="password">Password:</label><br/>
+                            <input type="password" id="password" name="register_password" required>
+                        </div>
+                    </div>
+                    <div align="center" class="register-button">
+                        <button type="button" id="register" onclick="checkInputs()">Register</button>
+                    </div>
+                    <div style="color: black;"><p id="success"></p></div>
+                </form>
+
+                <hr/>
+                <h3>Have an account? <a href="login.html" class="turn">Login</a></h3>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../UI-FETCH-APIs/signup.js"></script>
+</body>
 </html>

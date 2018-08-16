@@ -1,138 +1,429 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
-import CreateEntry from '../backend-model/diary_entry_model';
-
 const should = chai.should();
 
 chai.use(chaiHttp);
-
-describe('Entry Route Controller', () => {
-  it('should GET all diary entries', (done) => {
-    chai.request(server)
-      .get('/api/v1/entries')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('success');
-        res.body.should.have.property('entries');
-        res.body.should.not.have.property('error');
-        res.body.entries.should.be.a('array');
-        done();
-      });
-  });
-  it('should GET one diary entries with known id', (done) => {
-    const id1 = 2;
-    chai.request(server)
-      .get(`/api/v1/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('success');
-        res.body.should.have.property('entry');
-        res.body.entry.should.have.property('id').eql(id1);
-        res.body.should.not.have.property('error');
-        done();
-      });
-});
-  it('should FAIL in getting one diary entry with unknown id', (done) => {
-    const id1 = 10;
-    chai.request(server)
-      .get(`/api/v1/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entry');
-        res.body.should.not.have.property('id');
-        done();
-      });
-});
-  it('should FAIL in modifying one diary entry with unknown id', (done) => {
-    const id1 = 10;
-    chai.request(server)
-      .put(`/api/v1/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entry');
-        res.body.should.not.have.property('id');
-        done();
-      });
-});
-  it('should  FAIL in deleting one diary entry with unknown id', (done) => {
-    const id1 = 10;
-    chai.request(server)
-      .delete(`/api/v1/entries/${id1}`)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.should.not.have.property('entry');
-        res.body.should.not.have.property('id');
-        done();
-      });
-});
-  it('should DELETE one diary entries with known id', (done) => {
-    const id = 2;
-    chai.request(server)
-      .delete(`/api/v1/entries/${id}`)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.have.property('success');
-        res.body.should.not.have.property('error');
-        done();
-      });
-  });
-  it('should Modify one diary entry with known id', (done) => {
-    const entryAdded = new CreateEntry(1, 'One Beautiful Morning', 'Transportation', 'Brt', 'Someone paid my t-fare to work');
-    const EntryToModify = {
-      title: 'My worst day',
-      category: 'Transportation',
-      sub_category: 'Yellow Bus',
-      content: 'Lagos conductors can be rude..',
+let token = '';
+describe('User Route Controller', () => {
+  it('should Create New User', (done) => {
+    const values = {
+      email: 'me2@gmail.com',
+      password: 'password',
+      name: 'mr john doe',
     };
     chai.request(server)
-      .put(`/api/v1/entries/${entryAdded.id}`)
-      .send(EntryToModify)
+      .post('/api/v1/auth/signup')
+      .send(values)
       .end((err, res) => {
-        res.should.have.status(200);
+        token = res.body.token;
+        res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('success');
-        res.body.should.have.property('entry');
-        res.body.entry.should.have.property('id').eql(entryAdded.id);
-        res.body.entry.should.have.property('title');
-        res.body.entry.should.have.property('category');
-        res.body.entry.should.have.property('sub_category');
-        res.body.entry.should.have.property('content');
-        res.body.should.not.have.property('error');
+        res.body.should.have.property('user');
+        res.body.should.have.property('token');
         done();
       });
   });
-  it('should Create a new entry', (done) => {
+  it('should Return 400 for incomplete user info', (done) => {
     const values = {
-      title: 'The Day i ate afang soup',
-      category: 'Food',
-      sub_category: 'Calabar carnival',
-      content: 'I ate a lot of afang soup to my taste. It was fun..',
+      email: 'mi@gmail.com',
+      password: '',
+      name: 'mr john doe',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('message');
+        done();
+      });
+  });
+    it('should Return 400 for invalid email format', (done) => {
+        const values = {
+            email: 'migmail.com',
+            password: 'georgina1',
+            name: 'mr john doe',
+        };
+        chai.request(server)
+            .post('/api/v1/auth/signup')
+            .send(values)
+            .end((err, res) => {
+                res.should.have.status(400);
+                res.body.should.have.property('message');
+                done();
+            });
+    });
+  it('Login an existing user', (done) => {
+    const values = {
+      email: 'me2@gmail.com',
+      password: 'password',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(values)
+      .end((err, res) => {
+        if (err) done(err);
+        res.should.have.status(200);
+        res.body.should.have.property('user');
+        res.body.should.have.property('token');
+        done();
+      });
+  });
+  it('Return 401 for invalid email during login', (done) => {
+    const values = {
+      email: 'g@gmail.com',
+      password: 'password',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('user');
+        res.body.should.not.have.property('token');
+        done();
+      });
+  });
+  it('Return 401 for invalid password', (done) => {
+    const values = {
+      email: 'me@gmail.com',
+      password: 'hhhhhh',
+    };
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('user');
+        res.body.should.not.have.property('token');
+        done();
+      });
+  });
+});
+describe('Entry Route Controller', () => {
+  it('should return 200 for POST /entries with a valid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
     };
     chai.request(server)
       .post('/api/v1/entries')
+      .set('x-access-token', token)
       .send(values)
       .end((err, res) => {
         res.should.have.status(201);
         res.body.should.be.a('object');
         res.body.should.have.property('success');
         res.body.should.have.property('entry');
-        res.body.entry.should.have.property('id');
-        res.body.entry.should.have.property('date');
-        res.body.entry.should.have.property('title');
-        res.body.entry.should.have.property('category');
-        res.body.entry.should.have.property('sub_category');
-        res.body.entry.should.have.property('content');
+        done();
+      });
+  });
+  it('should return 400 for create entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/api/v1/entries')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for put entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for put entry endpoint with an invalid token', (done) => {
+    const values = {
+      title: 'me and teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid token', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', 'bhbhbdvhfvhfvbfhbvfvbhvbfh')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for delete entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .delete('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for get entry endpoint with an invalid id', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/id')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for POST /entries with incomplete parameters', (done) => {
+    const values = {
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for POST /entries with an empty parameter', (done) => {
+    const values = {
+      title: '',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for PUT /entries with incomplete parameters', (done) => {
+    const values = {
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entry');
+        done();
+      });
+  });
+  it('should return 200 for PUT /entries with complete parameters', (done) => {
+    const values = {
+      title: 'new teacher',
+      category: 'education',
+      subCategory: 'jss1',
+      content: 'i was flogged',
+    };
+    chai.request(server)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .send(values)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
+        done();
+      });
+  });
+  it('should return 400 for any entry endpoint without a token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries')
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        res.body.should.not.have.property('entries');
+        done();
+      });
+  });
+  it('should return 200 for GET /entries/:id with a valid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entry');
         res.body.should.not.have.property('error');
         done();
       });
   });
+  it('should return 200 for GET /entries with a valid token', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('success');
+        res.body.should.have.property('entries');
+        res.body.should.not.have.property('error');
+        done();
+      });
+  });
+  it('should return 404 for GET /entries/:id with a valid token and unknown id', (done) => {
+    chai.request(server)
+      .get('/api/v1/entries/100')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message');
+        done();
+      });
+  });
+  // it('should return 404 for DELETE /entries/:id with a valid token and unknown id', (done) => {
+  //   chai.request(server)
+  //     .delete('/api/v1/entries/4')
+  //     .set('x-access-token', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(404);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('message');
+  //       res.body.should.have.property('success');
+  //       done();
+  //     });
+  // });
+  // it('should return 200 for DELETE /entries/:id with a valid token and known id', (done) => {
+  //   chai.request(server)
+  //     .delete('/api/v1/entries/1')
+  //     .set('x-access-token', token)
+  //     .end((err, res) => {
+  //       res.should.have.status(200);
+  //       res.body.should.be.a('object');
+  //       res.body.should.have.property('message');
+  //       res.body.should.not.have.property('error');
+  //       done();
+  //     });
+  // });
+
 });
+
+
