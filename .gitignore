@@ -5,3 +5,5 @@ node_modules
 /coverage/
 coverage
 ./coverage
+.nyc_output
+.env
