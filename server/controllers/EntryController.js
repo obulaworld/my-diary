@@ -4,7 +4,7 @@
 import db from '../../db';
 
 class EntryController {
-   home(req, res) {
+   home (req, res) {
     res.status(200).render('index.html');
   }
 
@@ -28,29 +28,21 @@ class EntryController {
    editEntry(req, res) {
             const query5 = {text: 'Select * from entries where id = $1', values: [req.params.id], };
             db.query(query5, (error5, res5) => {
-                if(error5){return res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });};
+                if(error5) { return res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });};
                 if(res5.rows.length){
-                    const query2 = {
-                        text: 'Select * from entries where id = $1 AND user_id = $2 LIMIT 1', values: [req.params.id, req.decoded.id ],
-                    };
+                    const query2 = {text: 'Select * from entries where id = $1 AND user_id = $2 LIMIT 1', values: [req.params.id, req.decoded.id ],};
                     db.query(query2, (error2, res2) => {
-                        if (error2) {
-                            return res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
+                        if (error2) { return res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
                         } else {
                             if (!res2.rows.length) {return res.status(403).json({ success: false, message: 'Entry to modify does not belong to you' });} else{
                                 const query3 = {
-                                    text: `UPDATE entries SET  title = $1, category = $2, sub_category = $3,
-   content = $4 WHERE id = $5 returning id, title, category, sub_category, content`,
-                                    values: [
-                                        req.body.title, req.body.category, req.body.subCategory,
-                                        req.body.content, req.params.id,
-                                    ],
-                                };
+                                    text: `UPDATE entries SET  title = $1, category = $2, sub_category = $3,content = $4 WHERE id = $5 returning id, title, category, sub_category, content`,
+                                    values: [req.body.title, req.body.category, req.body.subCategory, req.body.content, req.params.id,],};
                                 db.query(query3, (error3, res3) => {
                                     if (error3) {
                                         return res.status(400).json({ success: false, message: 'Update was not successful at this time, Try Again' });
                                     }
-                                    return res.status(200).json({ success: true, message: 'Entry was updated successfully', entry: res3.rows});
+                                    return res.status(200).json({ success: true, message: 'Entry was updated successfully', entry: res3.rows });
                                 });
                             }
                         }
@@ -59,7 +51,7 @@ class EntryController {
             });
   }
 
-   getEntryById(req, res) {
+   getEntryById (req, res) {
         const query2 = {
             text: 'Select * from entries where id = $1 AND user_id = $2 LIMIT 1',
             values: [req.params.id, req.decoded.id],
