@@ -1,9 +1,9 @@
-body{  font: 15px/1.5 Arial;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png');  font-family: cursive;  }
+body{  font: 15px/1.5 Arial;  padding: 0;  margin: 0;  background: url('../img/testimonial-bg.png'); }
 /* Header **/
 header{  background: #6c2726;  color: #ffffff;  padding-top: 30px;  min-height: auto;  height: 25px;  border-bottom: #e8491d 3px solid;  }
 
 .inner{  padding: 12px 20px;  max-width: 1200px;  margin: 0 auto;  margin-top: -30px;  }
-
+body,html, .container{height: 100%; width:100%}
 #links{  float: right;  font-size:13pt;  margin-top: 5px;  }
 header a{  color: #ffffff;  text-decoration: none;  text-transform: uppercase;  font-size: 13px;  }
 
@@ -38,11 +38,11 @@ button:hover {  background: #fff;  color: black;  border-left-color: #6c2726;  b
 
 button:active {  position: relative;  top: 2px;  }
 
-footer {  padding: 20px;  margin-top: 600px;  height: 100px;  color: #ffffff;  text-align: center;  background-color: black;  }
+footer {  padding: 20px;  height: 100px;  color: #ffffff;  text-align: center;  background-color: black;  }
 
 .middle-h{  color: black;  }
 
-.container{  width: 100%;  margin: auto;  margin-left: 10px;  text-align: center;  color: #ffffff;  font-size: 25px;  margin-top: 2;  }
+.container{  width: 100%;  margin: auto; text-align: center;  color: #ffffff;  font-size: 25px;  margin-top: 2;  }
 
 .container h1{  margin-top: 200px;  }
 
@@ -52,7 +52,7 @@ footer {  padding: 20px;  margin-top: 600px;  height: 100px;  color: #ffffff;  t
 
 label{  color: black;  font-size: 13pt;  }
 
-@media (max-width : 480px ) {
-   #branding{ float: inherit !important; font-family: Courier !important;  margin-top: -20px;  }
-    header{height: 150px !important;}
-}
+/*@media (max-width : 480px ) {*/
+   /*#branding{ float: inherit !important; font-family: Courier !important;  margin-top: -20px;  }*/
+    /*header{height: 150px !important;}*/
+/*}*/
