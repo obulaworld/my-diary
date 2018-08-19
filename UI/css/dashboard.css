@@ -1,8 +1,9 @@
-
     h5{
         color: black
     }
-
+    .box{
+        display: none;
+    }
     .container{
         display: flex;
         flex-wrap: wrap;
@@ -11,7 +12,7 @@
 	#boxes .box{
         float: left;
         width: 30%;
-        padding: 5px;  
+        padding: 5px;
         box-shadow: 6px 10px 20px #e3e7ea;
         height: 100px;
         margin-left: 10px;
@@ -21,7 +22,6 @@
         text-align: center;
         margin-right: 20px;
     }
-
 
 	#boxes .box2{
         width: 100%;
@@ -37,7 +37,20 @@
         margin-right: 20px;
     }
 
-	.box-circle{
+    #boxes #box3{
+        width: 100%;
+        padding: 5px;
+        height: 10%;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        box-shadow: 6px 10px 20px #e3e7ea;
+        border: 1px solid;
+        border-color: blanchedalmond; /* border-radius: 20px; */
+        background-color: white;
+        text-align: center;
+    }
+
+    .box-circle{
         border-radius: 50%;
         width: 10%;
         border: 1px;
@@ -47,7 +60,7 @@
         margin-top: 20px;
     }
 
-	footer {
+    footer {
         padding: 20px;
         margin-top: 800px !important;
         height: 100px;
@@ -59,5 +72,4 @@
     footer {
         margin-top: 50px !important;
     }
-
 
