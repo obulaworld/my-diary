@@ -1,11 +1,42 @@
 
+/*nav {*/
+    /*background-color: white;*/
+    /*height: 2540px;*/
+    /*width: 500px;*/
+    /*position: absolute;*/
+    /*transform: translate(-800px,0);*/
+/*}*/
+#move-down p {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-style: italic;
+    font-size: 15pt;
+}
+
+nav{
+    background-color: white;
+    height: 100%;
+    width: 300px;
+}
+
 #first_sec{  background: url('../img/diary.jpg') no-repeat 150px 0;  height: 600px;  width: 100%;  border-bottom: #e8491d 3px solid;  }
 
 .box-images{  width: 100%;  height: 50%;  border: 1px;  border-radius: 2px;  }
 
 .container-sign{  background: #2e9adf;  color: white;  padding: 0 15px 15px;  position: relative;  width: 100%;  height: 50%;  }
 
-.container {  width: 100%;  background: rgba(0,0,0,0.5);  margin: auto;  height: 100%;  text-align: center;  color: #ffffff;  font-size: 25px;  }
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(0,0,0,0.5);
+    margin: auto;
+    height: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1em;  }
 /*Boxes*/
 #boxes{  margin-top: 20px;  }
 
@@ -14,28 +45,24 @@
 
 #move-down{position: relative;top: 100px;}
 
-#move-down p{ width: 50%; margin-left: 350px;color: white;font-style: italic;font-size: 15pt}
 
-#boxes .box{  float: left;  width: 30%;  padding: 5px;  height: 500px; font-size:13pt;  margin-left: 10px;  border: 1px solid;  border-color: #6c2726;  border-radius: 20px;  background-color: #6c2726;  text-align: center;  margin-bottom: 20px;  margin-right: 20px;  }
+#boxes .box{
+    width: 100%;
+    padding: 5px;
+    height: 500px;
+    font-size:13pt;
+    margin-left: 10px;
+    border: 1px solid;
+    border-color: #6c2726;
+    border-radius: 20px;
+    background-color: #6c2726;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
 
 .container h1 {  margin-top: 0!important; color: white  }
 
-@media (max-width: 480px) {
-	#move-down p {  width: 50%;  margin-left: 25%;  color: white;  font-style: italic;  max-height: 20%;    font-size: 15pt;  }
-	.container h1 {  margin-top: 0!important;  margin-right: 10% !important;  font-size: 15pt;  }
-	#move-down{position: relative;top: 0;}
-	.container .card .inner-card {  width: 1000px;  height: 580px; /* box-shadow: 0 8px 20px #e3e7ea; */  }
-	/*header{height: 30px !important;}*/
-	#boxes {  margin-top: 20px;  left: 40%;  margin-left: 40px;  }
-	footer {  display: none  }
-	#first_sec {  background: url(../img/diary.jpg) no-repeat -400px 0px;  height: 100%;    margin-left: 00px;    border-bottom: #e8491d 3px solid;  }
-	#boxes .box {  float: left;  width: 80%;  padding: 5px;  height: 100%;  margin-bottom: 20px;  margin-left: 10px;  border: 1px solid;  border-color: #6c2726;  border-radius: 20px;  background-color: #6c2726;  text-align: center;  margin-right: 20px;  }
-}
-
-footer {  margin-top: 1200px;  }
-
-.container h1 {  margin-top: 0!important;  margin-right: 10% !important;  }
-
-
+footer {  margin-top: 0 !important;  }
 
 

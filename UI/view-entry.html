@@ -8,6 +8,15 @@
 		<title>My Diary | View All Entries</title>
 		<link rel="stylesheet" type="text/css" href="./css/general.css">
 		<link rel="stylesheet" type="text/css" href="./css/view-entry.css">
+        <style>
+            @media screen and (min-width: 900px){
+                body {
+                    width: 900px;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+        </style>
 	</head>
 	<body>
 		<header>
@@ -47,71 +56,16 @@
 									<th>Action</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>7</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
-								<tr>
-									<td>8</td>
-									<td>NOW</td>
-									<td>My Fathers Day</td>
-									<td><a href="view.html"><button>View</button></a></td>
-									<td><a href="edit.html"><button>Edit</button></a></td>
-									<td><button>Delete</button></td>
-								</tr>
+							<tbody id="entries">
+								<!--<tr>-->
+									<!--<td>1</td>-->
+									<!--<td>NOW</td>-->
+									<!--<td>My Fathers Day</td>-->
+									<!--<td><a href="view.html"><button>View</button></a></td>-->
+									<!--<td><a href="edit.html"><button>Edit</button></a></td>-->
+									<!--<td><button>Delete</button></td>-->
+								<!--</tr>-->
+
 							</tbody>
 						</table>
 					</div>
@@ -124,6 +78,6 @@
 		<footer>
 			<p>My Diary, Copright &copy; 2018</p>
 		</footer>
-
+        <script src="../UI-FETCH-APIs/AllEntries.js"></script>
 	</body>
 </html>
