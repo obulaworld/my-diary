@@ -33,22 +33,24 @@ const registerUser = (details) => {
     .then((response) => {
       return response.json();
     }).then((data) => {
-      if (data.success){
+      if (data.success === true) {
         registerButton.innerHTML = 'Register';
         registerButton.removeAttribute('disabled');
         successElement.style.color = 'green';
         successElement.style.fontSize = '15px';
         successElement.innerHTML = 'Registration was successful....Redirecting to Dashboard';
+        successElement.style.display = 'block';
         localStorage.setItem('token', data.token);
         setTimeout(() =>{
           window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
         },2000);
-      } else if (data.error) {
+      } else {
         registerButton.innerHTML = 'Register';
         registerButton.removeAttribute('disabled');
+        successElement.innerHTML = data.message;
         successElement.style.color = 'red';
         successElement.style.fontSize = '15px';
-        successElement.innerHTML = data.error;
+        successElement.style.display = 'block';
       }
     }).catch( (err) => {
       console.log('Request failed', err);
@@ -72,7 +74,6 @@ const checkInputs = () => {
   } else {
     successElement.style.display = 'none';
   }
-
   registerButton.setAttribute('disabled', '');
   registerButton.innerHTML = 'Creating Account';
   const details = { name: name1, password: password1, email: email1 };

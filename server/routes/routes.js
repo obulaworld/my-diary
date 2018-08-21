@@ -14,6 +14,7 @@ const EntryRoute = (app) => {
   app.get('/api/v1/entries/:id', auth.verifyUserToken, DiaryController.getEntryById);
   app.post('/api/v1/auth/signup', validateUser, UserController.createUser);
   app.post('/api/v1/auth/login', validateUser2, UserController.loginUser);
+  app.get('/api/v1/auth/user', auth.verifyUserToken, UserController.getUser);
   app.get('/api/v1/entries', auth.verifyUserToken, DiaryController.getAllEntries);
   app.post('/api/v1/entries', auth.verifyUserToken, validateEntry.validate, DiaryController.createEntry);
   app.put('/api/v1/entries/:id',auth.verifyUserToken, validateEntry.validate, DiaryController.editEntry);

@@ -36,7 +36,7 @@ const url = 'https://my-diary-challenge.herokuapp.com/api/v1/auth/login';
     .then((response) => {
       return response.json();
     }).then((data) => {
-      if (data.success) {
+      if (data.success === true) {
         loginButton.innerHTML = 'Login';
         loginButton.removeAttribute('disabled');
         successElement.style.color = 'green';
@@ -45,12 +45,12 @@ const url = 'https://my-diary-challenge.herokuapp.com/api/v1/auth/login';
         setTimeout(() => {
           window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
         },2000);
-      } else if (data.error) {
+      } else {
         loginButton.innerHTML = 'Login';
         loginButton.removeAttribute('disabled');
         successElement.style.color = 'red';
         successElement.style.fontSize = '15px';
-        successElement.innerHTML = data.error;
+        successElement.innerHTML = data.message;
       }
     }).catch((err) => {
       console.log('Request failed', err);

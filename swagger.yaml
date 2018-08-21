@@ -12,7 +12,7 @@ schemes:
 - "https"
 - "http"
 paths:
-  /entries:
+  api/v1/entries:
     get:
       tags:
       - "Entries"
@@ -27,7 +27,7 @@ paths:
           description: "No token provided"
         500:
           description: "Server Error or Invalid token"
-  /entries/:entryId:
+  api/v1/entries/:entryId:
     get:
       tags:
       - "Entries"
@@ -49,7 +49,7 @@ paths:
           description: "Token not provided"
         500:
           description: "Server Error or Invalid token"
-  /entries/:
+  api/v1/entries/:
     post:
       tags:
       - "Entries"
@@ -66,7 +66,7 @@ paths:
           description: "No token Provided"
         500:
           description: "Server Error or Invalid token"
-  /entries/:entryId/:
+  api/v1/entries/:entryId/:
      put:
        tags:
        - "Entries"
@@ -83,7 +83,7 @@ paths:
             description: "No token provided"
          500:
            description: "Server Error or Invalid token"
-  /auth/signup:
+  api/v1/auth/signup:
     post:
       tags:
       - "User"
@@ -98,7 +98,7 @@ paths:
           description: "server Error"
           schema:
             $ref: "#/definitions/User"
-  /auth/login:
+  api/v1/auth/login:
     post:
       tags:
       - "User"

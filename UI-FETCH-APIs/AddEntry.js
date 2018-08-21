@@ -1,9 +1,6 @@
 /**
  * Created by obulaworld on 7/31/18.
  */
-/**
- * Created by obulaworld on 7/31/18.
- */
 const token = localStorage.getItem('token');
 const entryTitle = document.getElementById('title');
 const entryCategory = document.getElementById('category');
@@ -32,23 +29,26 @@ const checkOthers = (value,name, element1, element2) => {
 };
 
 const AddEntry = (details) => {
-    const url = 'https://my-diary-challenge.herokuapp.com/auth/signup';
+    const url = 'https://my-diary-challenge.herokuapp.com/api/v1/entries';
     fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token }, body: JSON.stringify(details) })
         .then((response) => {
             return response.json();
         }).then((data) => {
-        if (data.success){
+        if (data.success === true){
             addButton.innerHTML = 'Add Entry';
-            successElement.style.color = 'green';
-            successElement.style.fontSize = '15px';
-            successElement.innerHTML = 'Entry creation was successful successful....<a href="view.html">Go to All Entries</a>';
+            successElement.style.color = '#155724';
+            successElement.style.background = '#d4edda';
+            successElement.style.border = '#c3e6cb';
+            successElement.innerHTML = 'Entry creation was successful successful....<a href="view-entry.html" class="button_1">Go to All Entries</a>';
             successElement.scrollIntoView();
             // window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
-        }else if(data.error) {
+        } else {
             addButton.innerHTML = 'Add Entry';
-            successElement.style.color = 'red';
+            successElement.style.color = '#721c24';
+            successElement.style.background = '#f8d7da';
+            successElement.style.border = '#f5c6cb';
             successElement.style.fontSize = '15px';
-            successElement.innerHTML = `${data.error}`;
+            successElement.innerHTML = data.message;
             successElement.scrollIntoView();
         }
     }).catch( (err) =>{
@@ -57,7 +57,7 @@ const AddEntry = (details) => {
 };
 
 const checkInputs = () => {
-    errors = 0;
+  errors = 0;
   const title = entryTitle.value;
   const category = entryCategory.value;
   const subCategory = subCat.value;

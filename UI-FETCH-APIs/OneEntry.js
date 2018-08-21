@@ -7,10 +7,11 @@
 const token = localStorage.getItem('token');
 const id = localStorage.getItem('id');
 const box = document.getElementById('box');
+const ripple = document.getElementById('lds-ripple');
 box.style.display = 'none';
 
 const getEntry = () => {
-    const url = `https://my-diary-challenge.herokuapp.com/entries/${id}`;
+    const url = `https://my-diary-challenge.herokuapp.com/api/v1/entries/${id}`;
     // const url = `http://localhost:3000/entries/${id}`;
     fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token } })
         .then((response) => {
@@ -21,7 +22,7 @@ const getEntry = () => {
             for(const ent of data.entry) {
                 htmlValue += `<div class="box2">
             <h4>Title: <span>${ent.title}</span></h4>
-            <h5>Date: <span>${ent.created_at}</span></h5>
+            <h5>Date: <span>${new Date(ent.created_at).toDateString()}</span></h5>
             <h5>Category: <span>${ent.category}</span></h5>
             <h5>Category: <span>${ent.sub_category}</span></h5>
             <h4>Content: </h4>
@@ -32,7 +33,7 @@ const getEntry = () => {
             </div>`;
             }
             box.innerHTML = htmlValue;
-            box.style.display = 'block';
+            ripple.style.display = 'none';box.style.display = 'block';
         }else if(data.error) {
             // emptyText.style.width = '100%';
             // emptyText.style.height = '100%';

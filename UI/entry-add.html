@@ -41,30 +41,36 @@
 		<section id="boxes">
 			<div class="container">
 				<div class="box2">
-					<div class="right-card">
-						<form>
-						<div>
-							<label for="entry_title">Title:</label><br/>
-							<input id="entry_title" name="entry_title" required> 
-						</div>
-						<div>
-							<label for="entry_cat">Category:</label><br/>
-							<input id="entry_cat" name="entry_cat" > 
-						</div>
-						<div>
-							<label for="entry_sub_cat">Sub Category:</label><br/>
-							<input id="entry_sub_cat" name="entry_sub_cat" > 
-						</div>
-						<div>
-							<label for="entry_text">Text:</label><br/>
-							<textarea id="entry_text" name="entry_text" required rows="100" cols="70"> </textarea>
-						</div>
-						<div>
-							<a href="dashboard.html"><button>Add Entry</button></a>
-						</div>
-						</form>
-					</div>	
+                    <div class="success-check" role="alert" id="success">
 
+                    </div>
+                    <div class="right-card">
+                        <form>
+                            <div>
+                                <label for="title">Title:</label><br/>
+                                <input id="title" name="title" required>
+                                <div><p id="successT"></p></div>
+                            </div>
+                            <div>
+                                <label for="category">Category:</label><br/>
+                                <input id="category" name="category" >
+                                <div><p id="successC"></p></div>
+                            </div>
+                            <div>
+                                <label for="subCategory">Sub Category:</label><br/>
+                                <input id="subCategory" name="subCategory" >
+                                <div><p id="successS"></p></div>
+                            </div>
+                            <div>
+                                <label for="content">Text:</label><br/>
+                                <textarea id="content" name="content" required rows="100" cols="70"> </textarea>
+                                <div><p id="successTe"></p></div>
+                            </div>
+                            <div>
+                                <button onclick="checkInputs()" id="add" type="button">Add Entry</button>
+                            </div>
+                        </form>
+                    </div>
         </div>
 
     </div>
