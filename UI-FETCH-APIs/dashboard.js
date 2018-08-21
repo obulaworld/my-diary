@@ -1,8 +1,9 @@
 const token = localStorage.getItem('token');
 const emptyText = document.getElementById('box3');
 const box = document.getElementById('box2');
+const ripple = document.getElementById('lds-ripple');
 emptyText.style.display = 'none';
-const url = 'https://my-diary-challenge.herokuapp.com/entries';
+const url = 'https://my-diary-challenge.herokuapp.com/api/v1/entries';
 box.style.display = 'none';
 
 const getEntry = (id) => {
@@ -17,6 +18,7 @@ const getEntries = () => {
       if (data.success) {
         if (data.entries.length < 1) {
           emptyText.style.width = '100%'; emptyText.style.height = '100%';
+          ripple.style.display = 'none';
           emptyText.style.display = 'block';
         } else {
           let htmlValue = '';
@@ -24,13 +26,13 @@ const getEntries = () => {
             const content = entry.content.substring(1, 50);
             htmlValue += `<div class="box2"><h4>${entry.title}</h4><p> ${content}</p><div class="recent"><button class="button_1" onclick="getEntry(${entry.id})">View</button></div></div>`;
           }
-          box.innerHTML = htmlValue; box.style.display = 'block';
+          ripple.style.display = 'none';
+          box.innerHTML = htmlValue;
+          box.style.display = 'flex';
         }
-      } else if (data.error) {
-        emptyText.style.width = '100%';
-        emptyText.style.height = '100%';
+      } else if (data) {
+        ripple.style.display = 'none';
         emptyText.style.display = 'block';
-        emptyText.innerHTML = data.error;
       }
     }).catch((err) => {console.log('Request failed', err);});
 };

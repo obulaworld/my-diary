@@ -6,7 +6,7 @@ import auth from '../middlewares/auth';
 import db from '../../db';
 
 class UserController {
-   createUser (req, res) {
+  createUser (req, res) {
     const check = `SELECT * FROM users where email = '${req.body.email}'`;
     db.connect((error1, client) => {
       if (error1) { res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
@@ -33,7 +33,7 @@ class UserController {
     });
   }
 
-   loginUser (req, res) {
+  loginUser (req, res) {
     const query = {
       text: 'select id, name, password, is_notifiable from users where email = $1 LIMIT 1',
       values: [req.body.email ],
@@ -54,6 +54,35 @@ class UserController {
               } else {
                   return res.status(401).send({ success: false, message: 'Invalid Email or Password' });
               }
+          }
+      }
+    });
+  }
+
+  getUser (req, res) {
+    const query = {
+      text: 'select name, is_notifiable, email from users where id = $1 LIMIT 1',
+      values: [req.decoded.id ],
+    };
+    db.query(query, (error1, response) => {
+      if (error1) {
+          res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
+      }else{
+          const user = response.rows[0];
+          if (!response.rows.length) {
+              return res.status(401).send({ success: false, message: 'User not found' });
+          }else{
+              const query2 = {
+                  text: 'Select * from entries where user_id = $1',
+                  values: [req.decoded.id],
+              };
+              db.query(query2, (error2, res2) => {
+                  if (error2) {
+                      return res.status(400).json({ success: false, message: 'Something went wrong with the process, Please try later' });
+                  }else{
+                      return res.status(200).send({ success: true, message: 'success', user, entries: res2.rows });
+                  }
+              });
           }
       }
     });

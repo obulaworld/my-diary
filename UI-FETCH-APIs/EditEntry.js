@@ -36,18 +36,18 @@ const EditEntry = (details) => {
         .then((response) => {
             return response.json();
         }).then((data) => {
-        if (data.success){
+        if (data.success === true) {
             editButton.innerHTML = 'Save';
             successElement.style.color = 'green';
             successElement.style.fontSize = '15px';
-            successElement.innerHTML = 'Entry modification was successful successful....<a href="view.html">Go to All Entries</a>';
+            successElement.innerHTML = 'Entry modification was successful successful....<a href="view-entry.html">Go to All Entries</a>';
             successElement.scrollIntoView();
             // window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
-        }else if(data.error) {
+        }else {
             editButton.innerHTML = 'Save';
             successElement.style.color = 'red';
             successElement.style.fontSize = '15px';
-            successElement.innerHTML = `${data.error}`;
+            successElement.innerHTML = `${data.message}`;
             successElement.scrollIntoView();
         }
     }).catch( (err) =>{
