@@ -1,7 +1,7 @@
 /**
  * Created by obulaworld on 7/31/18.
  */
-const token = localStorage.getItem('token');
+
 const entryTitle = document.getElementById('title');
 const entryCategory = document.getElementById('category');
 const subCat = document.getElementById('subCategory');
@@ -75,16 +75,3 @@ const checkInputs = () => {
   const details = { title: title, category: category, subCategory: subCategory, content:content };
   AddEntry(details);
 };
-
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('id');
-  localStorage.removeItem('entry');
-  window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-};
-
-const checkToken = (() => {
-  if (!token) {
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-  }
-})();

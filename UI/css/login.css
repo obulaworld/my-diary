@@ -60,7 +60,6 @@
 
 	.container .card  .left-card {
         left: 0;
-        z-index: 1000;
         float: left;
         width: 50%;
         display: none;

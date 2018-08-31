@@ -30,8 +30,7 @@ const checkOthers = (value, element) => {
 const registerUser = (details) => {
   const url = 'https://my-diary-challenge.herokuapp.com/api/v1/auth/signup';
   fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: JSON.stringify(details) })
-    .then((response) => {
-      return response.json();
+    .then((response) => { return response.json();
     }).then((data) => {
       if (data.success === true) {
         registerButton.innerHTML = 'Register';
@@ -42,8 +41,7 @@ const registerUser = (details) => {
         successElement.style.display = 'block';
         localStorage.setItem('token', data.token);
         setTimeout(() =>{
-          window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
-        },2000);
+          window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';},2000);
       } else {
         registerButton.innerHTML = 'Register';
         registerButton.removeAttribute('disabled');
@@ -52,9 +50,7 @@ const registerUser = (details) => {
         successElement.style.fontSize = '15px';
         successElement.style.display = 'block';
       }
-    }).catch( (err) => {
-      console.log('Request failed', err);
-    });
+    }).catch( (err) => { console.log('Request failed', err); });
 };
 
 const checkInputs = () => {

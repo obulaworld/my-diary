@@ -32,3 +32,6 @@ textarea{
     padding: 5px 10px;
 }
 
+.toggle:checked + .wrapper > aside {
+    margin-top: -20px !important;
+}

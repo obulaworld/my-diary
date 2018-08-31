@@ -1,7 +1,6 @@
 /**
  * Created by obulaworld on 7/31/18.
  */
-const token = localStorage.getItem('token');
 const entry = JSON.parse(localStorage.getItem('entry'));
 const entryTitle = document.getElementById('title');
 const entryCategory = document.getElementById('category');
@@ -15,6 +14,10 @@ const editButton = document.getElementById('edit');
 const box = document.getElementById('boxes');
 const successElement = document.getElementById('success');
 let errors = 0;
+entryTitle.value = entry.title;
+entryCategory.value = entry.category;
+subCat.value = entry.sub_category;
+contentText.value = entry.content;
 
 const checkOthers = (value,name, element1, element2) => {
     if (value === '' || !value.replace(/\s/g, '').length) {
@@ -75,20 +78,3 @@ const checkInputs = () => {
     const details = { title: title, category: category, subCategory: subCategory, content:content };
     EditEntry(details);
 };
-const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('entry');
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-};
-
-const checkToken = (() => {
-    if(!token){
-        window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-    }else{
-        entryTitle.value = entry.title;
-        entryCategory.value = entry.category;
-        subCat.value = entry.sub_category;
-        contentText.value = entry.content;
-    }
-})();

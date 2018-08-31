@@ -42,16 +42,28 @@
             </div>
             <div id="links">
                 <ul>
-                    <li><a href="index.html">Home</a>
-                    <li class="current"><a href="login.html">Login</a>
-                    <li><a href="register.html">Sign up</a>
-                        <!--<li><a href="dashboard.html">Dashboard</a>-->
+                    <li class="change1"><a href="index.html ">Home</a>
+                    <li class="current change1"><a href="login.html">Login</a>
+                    <li class="change1"><a href="register.html">Sign up</a>
+                    <li class="change2"><label for="offcanvas" class="toggler"><span class="navicon"></span></label></li>
                 </ul>
             </div>
         </div>
     </div>
 
 </header>
+<input type="checkbox" id="offcanvas" class="toggle">
+<div class="wrapper">
+    <aside>
+        <nav>
+            <ul>
+                <a href="index.html"><li >Home</li></a>
+                <a href="login.html"><li class="current">Login</li></a>
+                <a href="register.html"><li>Signup</li></a>
+            </ul>
+        </nav>
+    </aside>
+    <label for="offcanvas" class="biglabel"></label>
 <section class="container">
     <div class="card">
         <div class="inner-card">
@@ -88,6 +100,7 @@
         </div>
     </div>
 </section>
+</div>
 <script src="../UI-FETCH-APIs/login.js"></script>
 </body>
 </html>

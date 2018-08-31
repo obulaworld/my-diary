@@ -18,6 +18,10 @@
                 }
             }
         </style>
+        <script src="../UI-FETCH-APIs/checkToken.js"></script>
+        <script>
+            checkToken();
+        </script>
 	</head>
 	<body>
 		<header>
@@ -28,16 +32,31 @@
  						</div>
 						<div id="links"> 
 							<ul>
-								<li ><a href="dashboard.html">Dashboard</a></li>
-								<li class="current"><a href="entry-add.html">Add Entry</a></li>
-								<li><a href="view-entry.html">View All Entries</a></li>
-								<li><a href="profile.html">My Profile</a></li>
-								<li onclick="logout()"><a href="index.html">Logout</a></li>
-							</ul>
+								<li class="change1"><a href="dashboard.html">Dashboard</a></li>
+								<li class="current change1"><a href="entry-add.html">Add Entry</a></li>
+								<li class="change1"><a href="view-entry.html">View All Entries</a></li>
+								<li class="change1"><a href="profile.html">My Profile</a></li>
+								<li class="change1" onclick="logout()">Logout</li>
+                                <li class="change2"><label for="offcanvas" class="toggler"><span class="navicon"></span></label></li>
+                            </ul>
 						</div>
 					</div>
 			</div>
 		</header>
+        <input type="checkbox" id="offcanvas" class="toggle">
+        <div class="wrapper">
+            <aside>
+                <nav>
+                    <ul>
+                        <a href="dashboard.html"><li class="current">Dashboard</li></a>
+                        <a href="entry-add.html"><li>Add Entry</li></a>
+                        <a href="view-entry.html"><li>View All Entries</li></a>
+                        <a href="profile.html"><li>My Profile</li></a>
+                        <a onclick="logout()"><li>Logout</li></a>
+                    </ul>
+                </nav>
+            </aside>
+            <label for="offcanvas" class="biglabel"></label>
 		<section id="boxes">
 			<div class="container">
 				<div class="box2">
@@ -53,12 +72,33 @@
                             </div>
                             <div>
                                 <label for="category">Category:</label><br/>
-                                <input id="category" name="category" >
+                                <select id="category" name="category">
+                                    <option value="">Choose Category</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Religion">Religion</option>
+                                    <option value="Family">Family</option>
+                                    <option value="World">World</option>
+                                    <option value="Experience">Experience</option>
+                                    <option value="Accomplishment">Accomplishment</option>
+                                    <option value="Thoughts">Thoughts</option>
+                                </select>
                                 <div><p id="successC"></p></div>
                             </div>
                             <div>
                                 <label for="subCategory">Sub Category:</label><br/>
-                                <input id="subCategory" name="subCategory" >
+                                <select id="subCategory" name="subCategory" >
+                                    <option value="">Choose sub-category</option>
+                                    <option value="My church">My church</option>
+                                    <option value="Other church">Other church</option>
+                                    <option value="Gift">Gift</option>
+                                    <option value="Today">Today</option>
+                                    <option value="Work">Work</option>
+                                    <option value="My school">My school</option>
+                                    <option value="Award">Award</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Other">Other</option>
+                                </select>
                                 <div><p id="successS"></p></div>
                             </div>
                             <div>
@@ -79,6 +119,8 @@
 <footer>
     <p>My Diary, Copright &copy; 2018</p>
 </footer>
+        </div>
+<script src="../UI-FETCH-APIs/logout.js"></script>
 <script src="../UI-FETCH-APIs/AddEntry.js"></script>
 </body>
 </html>

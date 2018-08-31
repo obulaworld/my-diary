@@ -61,8 +61,7 @@ class UserController {
 
   getUser (req, res) {
     const query = {
-      text: 'select name, is_notifiable, email from users where id = $1 LIMIT 1',
-      values: [req.decoded.id ],
+      text: 'select name, is_notifiable, email from users where id = $1 LIMIT 1', values: [req.decoded.id ],
     };
     db.query(query, (error1, response) => {
       if (error1) {
@@ -73,8 +72,7 @@ class UserController {
               return res.status(401).send({ success: false, message: 'User not found' });
           }else{
               const query2 = {
-                  text: 'Select * from entries where user_id = $1',
-                  values: [req.decoded.id],
+                  text: 'Select * from entries where user_id = $1', values: [req.decoded.id],
               };
               db.query(query2, (error2, res2) => {
                   if (error2) {

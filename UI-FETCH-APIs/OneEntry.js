@@ -4,21 +4,17 @@
 /**
  * Created by obulaworld on 8/1/18.
  */
-const token = localStorage.getItem('token');
 const id = localStorage.getItem('id');
 const box = document.getElementById('box');
 const ripple = document.getElementById('lds-ripple');
 box.style.display = 'none';
 
-const getEntry = () => {
+const getEntry = (() => {
     const url = `https://my-diary-challenge.herokuapp.com/api/v1/entries/${id}`;
-    // const url = `http://localhost:3000/entries/${id}`;
     fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token } })
-        .then((response) => {
-            return response.json();
+        .then((response) => { return response.json();
         }).then((data) => {
-        if (data.success) {
-            let htmlValue = '';
+        if (data.success) { let htmlValue = '';
             for(const ent of data.entry) {
                 htmlValue += `<div class="box2">
             <h4>Title: <span>${ent.title}</span></h4>
@@ -32,30 +28,8 @@ const getEntry = () => {
                 </div>
             </div>`;
             }
-            box.innerHTML = htmlValue;
-            ripple.style.display = 'none';box.style.display = 'block';
+            box.innerHTML = htmlValue; ripple.style.display = 'none';box.style.display = 'block';
         }else if(data.error) {
-            // emptyText.style.width = '100%';
-            // emptyText.style.height = '100%';
-            // emptyText.style.display = 'block';
-            // emptyText.innerHTML = data.error;
         }
-    }).catch( (err) => {
-      console.log('Request failed', err);
-    });
-};
-
-const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('entry');
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-};
-
-const checkToken = (() => {
-  if (!token) {
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-  } else {
-    getEntry();
-  }
+    }).catch( (err) => {console.log('Request failed', err);});
 })();
