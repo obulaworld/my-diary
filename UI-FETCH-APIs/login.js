@@ -30,10 +30,7 @@ const url = 'https://my-diary-challenge.herokuapp.com/api/v1/auth/login';
         loginButton.removeAttribute('disabled');
         successElement.style.color = 'green';
         successElement.innerHTML = 'Successful....Redirecting to Dashboard';
-        localStorage.setItem('token', data.token);
-        setTimeout(() => {
-          window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';
-        },2000);
+          redirectDashboard(data);
       } else {
         loginButton.innerHTML = 'Login';
         loginButton.removeAttribute('disabled');
