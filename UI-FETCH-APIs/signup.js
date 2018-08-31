@@ -30,9 +30,7 @@ const registerUser = (details) => {
         successElement.style.fontSize = '15px';
         successElement.innerHTML = 'Registration was successful....Redirecting to Dashboard';
         successElement.style.display = 'block';
-        localStorage.setItem('token', data.token);
-        setTimeout(() =>{
-          window.location.href = window.location.protocol + '//' + window.location.hostname + '/dashboard.html';},2000);
+          redirectDashboard(data);
       } else {
         registerButton.innerHTML = 'Register';
         registerButton.removeAttribute('disabled');
