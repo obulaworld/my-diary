@@ -19,7 +19,7 @@ const getUser = (() => {
                                     <td><strong>Number of Entries</strong></td>
                                     <td>${data.entries.length}</td>
                                 </tr>`;
-          table.style.display = 'block';
+          table.style.display = 'contents';
       } else {
           table.innerHTML = `   <tr>
                                     <td colspan="2"><strong>${data.message}</strong></td>`;
