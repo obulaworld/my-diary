@@ -8,16 +8,7 @@ const emailElement = document.getElementById('email');
 const passwordElement = document.getElementById('password');
 let errorCount = 0;
 
-const checkEmail = (value, element) =>{
-    // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
-    const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-    if (value === '' || !value.replace(/\s/g, '').length || !emailFilter.test(value)) {
-        errorCount += 1;
-        element.style.border = '1px solid red';
-    } else {
-        element.style.border = '1px solid green';
-    }
-}
+
 const checkOthers = (value, element) => {
         if (value === '' || !value.replace(/\s/g, '').length) {
             errorCount += 1;
@@ -59,7 +50,7 @@ const checkInputs = () => {
   const email1 = emailElement.value;
   const password1 = passwordElement.value;
   checkOthers(name1, nameElement);
-  checkEmail(email1, emailElement);
+  checkEmail(email1);
   checkOthers(password1, passwordElement);
 
   if (errorCount > 0) {

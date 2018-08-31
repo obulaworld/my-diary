@@ -5,11 +5,6 @@ emptyText.style.display = 'none';
 const url = 'https://my-diary-challenge.herokuapp.com/api/v1/entries';
 box.style.display = 'none';
 
-const getEntry = (id) => {
-  localStorage.setItem('id', id);
-  window.location.href = window.location.protocol + '//' + window.location.hostname + '/view.html';
-};
-
 const getEntries = (() => {
   fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token } })
     .then((response) => {

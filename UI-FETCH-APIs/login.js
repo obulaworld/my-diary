@@ -10,17 +10,6 @@ const loginButton = document.getElementById('login');
 const successElement = document.getElementById('success');
 let errorCount = 0;
 
-const checkEmail = (email) => {
-  // Reference => https://stackoverflow.com/questions/20301237/javascript-form-validating-e-mail-address-and-checking-another-field-with-star
-  const emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-  if (email === '' || !email.replace(/\s/g, '').length || !emailFilter.test(email)) {
-        errorCount += 1;
-        emailElement.style.border = '1px solid red';
-    } else {
-       emailElement.style.border = '1px solid green';
-   }
-};
-
 const checkPassword = (password) => {
     if (password === '' || !password.replace(/\s/g, '').length) {
         errorCount += 1;
