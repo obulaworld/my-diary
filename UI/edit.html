@@ -18,7 +18,10 @@
             }
         }
     </style>
-
+    <script src="../UI-FETCH-APIs/checkToken.js"></script>
+    <script>
+        checkToken();
+    </script>
 </head>
 <body>
 <header>
@@ -29,16 +32,31 @@
             </div>
             <div id="links">
                 <ul>
-                    <li ><a href="dashboard.html">Dashboard</a></li>
-                    <li class="current"><a href="entry-add.html">Add Entry</a></li>
-                    <li><a href="view-entry.html">View All Entries</a></li>
-                    <li><a href="profile.html">My Profile</a></li>
-                    <li onclick="logout()"><a href="index.html">Logout</a></li>
+                    <li class="change1"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="change1"><a href="entry-add.html">Add Entry</a></li>
+                    <li class="change1"><a href="view-entry.html">View All Entries</a></li>
+                    <li class="change1"><a href="profile.html">My Profile</a></li>
+                    <li class="change1" onclick="logout()">Logout</li>
+                    <li class="change2"><label for="offcanvas" class="toggler"><span class="navicon"></span></label></li>
                 </ul>
             </div>
         </div>
     </div>
 </header>
+<input type="checkbox" id="offcanvas" class="toggle">
+<div class="wrapper">
+    <aside>
+        <nav>
+            <ul>
+                <a href="dashboard.html"><li class="current">Dashboard</li></a>
+                <a href="entry-add.html"><li>Add Entry</li></a>
+                <a href="view-entry.html"><li>View All Entries</li></a>
+                <a href="profile.html"><li>My Profile</li></a>
+                <a onclick="logout()"><li>Logout</li></a>
+            </ul>
+        </nav>
+    </aside>
+    <label for="offcanvas" class="biglabel"></label>
 <div id="add-header" align="center">
     <div><p id="success"></p></div>
 </div>
@@ -77,6 +95,8 @@
 </section><footer>
     <p>My Diary, Copright &copy; 2018</p>
 </footer>
+</div>
+<script src="../UI-FETCH-APIs/logout.js"></script>
 <script src="../UI-FETCH-APIs/EditEntry.js"></script>
 </body>
 </html>

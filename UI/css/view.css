@@ -49,3 +49,6 @@ footer {  padding: 20px; margin-top:100px;height: 100px;  color: #ffffff;  text-
         opacity: 0;
     }
 }
+.toggle:checked + .wrapper > aside {
+    margin-top: -20px !important;
+}

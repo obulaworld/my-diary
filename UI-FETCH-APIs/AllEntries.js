@@ -1,7 +1,6 @@
 /**
  * Created by obulaworld on 8/1/18.
  */
-const token = localStorage.getItem('token');
 const box = document.getElementById('entries');
 const boxes = document.getElementById('boxes');
 const ripple = document.getElementById('lds-ripple');
@@ -23,7 +22,7 @@ const editEntry = (id) => {
   window.location.href = window.location.protocol + '//' + window.location.hostname + '/edit.html';
 };
 
-const getEntries = () => {
+const getEntries = (() => {
   const url = 'https://my-diary-challenge.herokuapp.com/api/v1/entries';
   fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token } })
     .then((response) => { return response.json();
@@ -44,22 +43,9 @@ const getEntries = () => {
              count = count + 1;
           }
           box.innerHTML = htmlValue; ripple.style.display = 'none'; boxes.style.display = 'block'; }
-      } else if (data.error) {
+      } else{
         ripple.style.display = 'none'; boxes.style.display = 'block';
-        box.innerHTML = '<tr><td rowspan="6">You currently have no entries......<a href="entry-add.html">Create Entry</a></td></tr>';
+        box.innerHTML = '<tr><td colspan="6">You currently have no entries......<a href="entry-add.html">Create Entry</a></td></tr>';
       }
     }).catch((err) => { console.log('Request failed', err); });
-};
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('id');
-  localStorage.removeItem('entry');
-  window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-};
-const checkToken = (() => {
-  if (!token) {
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-  } else {
-    getEntries();
-  }
 })();

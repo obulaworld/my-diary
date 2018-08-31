@@ -1,4 +1,3 @@
-const token = localStorage.getItem('token');
 const emptyText = document.getElementById('box3');
 const box = document.getElementById('box2');
 const ripple = document.getElementById('lds-ripple');
@@ -11,7 +10,7 @@ const getEntry = (id) => {
   window.location.href = window.location.protocol + '//' + window.location.hostname + '/view.html';
 };
 
-const getEntries = () => {
+const getEntries = (() => {
   fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token } })
     .then((response) => {
       return response.json(); }).then((data) => {
@@ -35,18 +34,4 @@ const getEntries = () => {
         emptyText.style.display = 'block';
       }
     }).catch((err) => {console.log('Request failed', err);});
-};
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('id');
-  localStorage.removeItem('entry');
-  window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-};
-
-const checkToken = (() => {
-  if (!token) {
-    window.location.href = window.location.protocol + '//' + window.location.hostname + '/login.html';
-  } else {
-    getEntries();
-  }
 })();
