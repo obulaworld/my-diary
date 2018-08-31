@@ -8,11 +8,6 @@ boxes.style.display = 'none';
 let count = 0;
 let all = '';
 
-const getEntry = (id) => {
-  localStorage.setItem('id', id);
-  window.location.href = window.location.protocol + '//' + window.location.hostname + '/view.html';
-};
-
 const editEntry = (id) => {
   for (const entry of all){
     if (parseInt(entry.id, 10) === parseInt(id, 10)) {

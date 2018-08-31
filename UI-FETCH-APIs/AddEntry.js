@@ -15,20 +15,9 @@ const box = document.getElementById('boxes');
 const successElement = document.getElementById('success');
 let errors = 0;
 
-const checkOthers = (value,name, element1, element2) => {
-    if (value === '' || !value.replace(/\s/g, '').length) {
-        errors += 1;
-        element1.style.color = 'red';
-        element1.style.fontSize = '15px';
-        element1.innerHTML = `${name} cannot be empty or spaces`;
-        element2.style.border = '1px solid red';
-    } else {
-        element1.style.display = 'none';
-        element2.style.border = '0';
-    }
-};
 
-const AddEntry = (details) => {
+
+const SaveEntry = (details) => {
     const url = 'https://my-diary-challenge.herokuapp.com/api/v1/entries';
     fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8', 'x-access-token': token }, body: JSON.stringify(details) })
         .then((response) => {
@@ -56,22 +45,3 @@ const AddEntry = (details) => {
     });
 };
 
-const checkInputs = () => {
-  errors = 0;
-  const title = entryTitle.value;
-  const category = entryCategory.value;
-  const subCategory = subCat.value;
-  const content = contentText.value;
-  checkOthers(title, 'Title', successT, entryTitle);
-  checkOthers(category, 'Category', successC, entryCategory);
-  checkOthers(subCategory, 'subCategory', successS, subCat);
-  checkOthers(content, 'Content', successTe, contentText);
-
-  if (errors > 0) {
-    box.scrollIntoView();
-    return;
-  }
-  addButton.innerHTML = 'Saving....';
-  const details = { title: title, category: category, subCategory: subCategory, content:content };
-  AddEntry(details);
-};
