@@ -1,10 +1,20 @@
 // react libraries
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
- // components
-import Router from './components/Router';
+// third-party libraries
+import { Provider } from "react-redux";
+import configureStore from "../src/store/storeConfig";
 
-ReactDOM.render((
-<Router />),
-document.getElementById('root'));
+// components
+import Router from "./components/Router";
+
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router />
+  </Provider>,
+
+  document.getElementById("root")
+);

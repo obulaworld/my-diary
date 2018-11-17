@@ -14,25 +14,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react/recommended"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
         "one-var": 0,
         "one-var-declaration-per-line": 0,
         "new-cap": 0,
@@ -41,19 +25,22 @@
         "no-console": 0,
         "comma-dangle": 0,
         "curly": ["error", "multi-line"],
-        "import/no-unresolved": [2, {
-            "commonjs": true
-        }],
+        "import/no-unresolved": [2, { "commonjs": true }],
         "import/extensions": 0,
         "import/named": 0,
-        "no-shadow": ["error", {
-            "allow": ["req", "res", "err"]
-        }],
+        "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
         "valid-jsdoc": ["error", {
-            "requireReturn": false,
-            "requireReturnType": false,
-            "requireParamDescription": false,
-            "requireReturnDescription": true
+          "requireReturn": false,
+          "requireReturnType": false,
+          "requireParamDescription": false,
+          "requireReturnDescription": true
+        }],
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": false,
+                "ClassDeclaration": true
+            }
         }]
-    }
+      }
 }
