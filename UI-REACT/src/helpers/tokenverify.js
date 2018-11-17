@@ -1,9 +1,7 @@
 // third-party libraries
-import jwt from 'jsonwebtoken';
-
+import jwt from "jsonwebtoken";
 
 const auth = {
-
   /**
    * @static
    * @param {string} token
@@ -16,7 +14,7 @@ const auth = {
       decoded = jwt.decode(token);
     } catch (error) {
       decoded = {
-        error: error.message,
+        error: error.message
       };
     }
     return decoded;
@@ -25,7 +23,7 @@ const auth = {
   /**
    * @static
    * @param {string} token
-   * @param {boolean} response
+   * @param {boolean} responses
    * @param {function} next
    * @description Verifies user token
    * @return {object} object
@@ -49,11 +47,11 @@ const auth = {
       decoded = jwt.verify(token, process.env.SECRET);
     } catch (error) {
       decoded = {
-        error: error.message,
+        error: error.message
       };
     }
     return decoded;
-  },
+  }
 };
 
 export default auth;
