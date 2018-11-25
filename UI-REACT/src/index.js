@@ -9,6 +9,9 @@ import configureStore from "../src/store/storeConfig";
 // components
 import Router from "./components/Router";
 
+// scss
+import '../public/scss/index.scss';
+
 const store = configureStore();
 
 ReactDOM.render(

@@ -1,0 +1,21 @@
+@media screen and (min-width: 550px){
+  #boxes .box{
+      width:42%;
+      height: 100%;
+  }
+}
+@media screen and (min-width: 800px){
+  #boxes .box {
+      width: 28%;
+      height: 100%;
+  }
+}
+
+
+@media screen and (min-width: 900px){
+  body {
+      width: 900px;
+      margin-right: auto;
+      margin-left: auto;
+  }
+}
