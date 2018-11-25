@@ -14,7 +14,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react/recommended"
+        "react/recommended",
+        "eslint-plugin-react/recommended"
     ],
     "rules": {
         "one-var": 0,
