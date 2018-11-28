@@ -8,7 +8,7 @@ class Header extends Component {
         <div className="">
           <div className="inner">
             <div id="branding">
-              <a href="index.html">
+              <a href="/">
                 <img src={logo} alt="My diary Logo" />
               </a>
             </div>
