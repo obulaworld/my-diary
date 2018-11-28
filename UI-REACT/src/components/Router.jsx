@@ -10,7 +10,7 @@ import AuthenticatedRoute from './AuthRoute';
 import Home from './Home';
 import Dashboard from './Dashboard';
 import NotFound from './Dashboard';
-import Login from '../containers/Login';
+import Login from '../containers/Signup/Login';
 import Signup from '../containers/Signup/Signup';
 
 /**
