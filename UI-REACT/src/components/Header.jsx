@@ -15,13 +15,13 @@ class Header extends Component {
             <div id="links">
               <ul>
                 <li className="current change1">
-                  <a href="index.html">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li className="change1">
-                  <a href="login.html">Login</a>
+                  <a href="login">Login</a>
                 </li>
                 <li className="change1">
-                  <a href="register.html">Sign up</a>
+                  <a href="register">Sign up</a>
                 </li>
                 <li className="change2">
                   <label htmlFor="offcanvas" className="toggler">
