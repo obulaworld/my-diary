@@ -14,7 +14,7 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      CheckToken.verifyUserToken(localStorage.getItem("token")) ? (
+      CheckToken.verifyUserToken(localStorage.getItem("diaryToken")) ? (
         <Component {...props} />
       ) : (
         <Redirect
