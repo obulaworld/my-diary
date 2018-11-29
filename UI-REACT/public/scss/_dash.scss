@@ -1,11 +1,11 @@
 @media screen and (min-width: 650px){
   #boxes .box2{
-      width: 43% !important;
+      width: 43% ;
   }
 }
 @media screen and (min-width: 800px){
   #boxes .box2{
-      width: 44% !important;
+      width: 44% ;
   }
 }
 @media screen and (min-width: 900px){
@@ -15,3 +15,8 @@
       margin-left: auto;
   }
 }
+
+.container{
+  background: 0;
+}
+

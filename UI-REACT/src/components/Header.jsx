@@ -14,7 +14,7 @@ class Header extends Component {
             </div>
             <div id="links">
               <ul>
-                <li className="current change1">
+                <li className=" change1">
                   <a href="/">Home</a>
                 </li>
                 <li className="change1">
