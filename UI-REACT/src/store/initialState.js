@@ -5,18 +5,22 @@ const initialState = {
   auth: {
     login: {
       processing: false,
-      error: '',
-      message: ''
+      error: "",
+      message: ""
     },
     signup: {
       processing: false,
-      error: '',
-      message: ''
+      error: "",
+      message: ""
     },
-    user: {
-
-    },
-    isAuth: false,
+    user: {},
+    isAuth: false
   },
+  entries: {
+    processing: false,
+    error: "",
+    message: "",
+    entries: []
+  }
 };
 export default initialState;

@@ -1,10 +1,10 @@
 // modular importation
 import initialState from "../store/initialState";
 import {
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGIN_PROCESSING,
-  LOGIN_ERROR_CLEARED
+  DASHBOARD_SUCCESS,
+  DASHBOARD_FAILURE,
+  DASHBOARD_PROCESSING,
+  DASHBOARD_ERROR_CLEARED
 } from "../action_types/login"  ;
 /**
  *
@@ -12,28 +12,29 @@ import {
  * @param {string} action
  * @desc sample of a rLOGIN
  */
-export const reducer = (state = initialState.auth.login, action) => {
+export const reducer = (state = initialState.entries, action) => {
   switch (action.type) {
-    case LOGIN_PROCESSING:
+    case DASHBOARD_PROCESSING:
       return {
         ...state,
         processing: action.payload
       };
-    case LOGIN_SUCCESS:
+    case DASHBOARD_SUCCESS:
       return {
         ...state,
         processing: false,
         message: action.payload.message,
-        error: ""
+        error: "",
+        entries: [...state.entries, action.payload.entries]
       };
-    case LOGIN_FAILURE:
+    case DASHBOARD_FAILURE:
       return {
         ...state,
         processing: false,
         message: '',
-        error: action.payload
+        error: action.payload.message
       };
-    case LOGIN_ERROR_CLEARED:
+    case DASHBOARD_ERROR_CLEARED:
       return {
         ...state,
         processing: false,
@@ -46,3 +47,4 @@ export const reducer = (state = initialState.auth.login, action) => {
 };
 
 export default reducer;
+
