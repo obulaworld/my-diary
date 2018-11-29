@@ -21,6 +21,12 @@ const initialState = {
     error: "",
     message: "",
     entries: []
+  },
+  entry: {
+    processing: false,
+    error: "",
+    message: "",
+    entry: {}
   }
 };
 export default initialState;
